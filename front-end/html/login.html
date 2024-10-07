@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaIngresso</title>
+    <link rel="stylesheet" href="../css/login.css"/>
+</head>
+<body>
+    <div class="nav">
+        <img class="logo" src="../img/logo.jpeg">
+        <div>
+            <button class="BtnCadastrar">Criar Conta</button>
+            <button class="BtnEntrar">Entrar</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="divFormLogin">
+        <h1 class="LabelLoginTitulo">Cadastrar-se</h1>
+        <form class="FormCadastro" action="#" method="post">
+            <label for="email">Email</label>
+            <br>
+            <input id="email" class="InputFormLogin" type="email" required/>
+            <br>
+            <label for="senha">Senha</label>
+            <br>
+            <input id="senha" class="InputFormLogin" type="password" required/>
+            <br>
+            <div class="divBtnLimparEnviar">
+            <button type="button" class="BtnLimpar" onclick="BtnLimpar()">Limpar</button>
+            <input class="BtnLogin" type="submit">
+        </div>
+        </form>
+        
+    </div>
+    </div>
+    <script src="../js/login.js"></script>
+</body>
+</html>
