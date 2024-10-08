@@ -118,10 +118,11 @@ nav {
     font-size: 1.5rem;
 }
 
-#DivPosicaoPoltronaA,  #DivPosicaoPoltronaB, #DivPosicaoPoltronaC, #DivPosicaoPoltronaD, #DivPosicaoPoltronaNumero, #DivTela{
+#DivPosicaoPoltronaA,  #DivPosicaoPoltronaB, #DivPosicaoPoltronaC, #DivPosicaoPoltronaD, #DivPosicaoPoltronaNumero, #DivTela {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap; /* Permite que os círculos se reorganizem em telas menores */
 }
 
 .circuloPoltrona {
@@ -137,11 +138,9 @@ nav {
     background-color: #66ff00;
 }
 
-
 .circuloPoltrona.selecionada {
     background-color: #66ff00;
 }
-
 
 .NumeroPosicaoPoltrona {
     padding: 1rem;
@@ -159,9 +158,168 @@ nav {
     text-align: center;
 }
 
-#DivSessaoPoltronaDetalhe,#DivTela {
+#DivSessaoPoltronaDetalhe, #DivTela {
     background-color: #252525;
     margin: 2rem;
     border-radius: 0.5rem;
 }
 
+/* Tornando o layout responsivo para dispositivos menores */
+
+@media (max-width: 1197px) {
+    .circuloPoltrona {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 1rem;
+        margin: 0.6rem;
+    }
+}
+
+@media (max-width: 1058px) {
+    .circuloPoltrona {
+        padding: 0.8rem;
+        margin: 1rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 0.8rem;
+        margin: 0.6rem;
+    }
+}
+
+@media (max-width: 953px) {
+    .circuloPoltrona {
+        padding: 0.6rem;
+        margin: 1rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 0.8rem;
+        margin: 0.4rem;
+    }
+} 
+
+@media (max-width: 855px) {
+    .circuloPoltrona {
+        padding: 0.4rem;
+        margin: 1rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 0.6rem;
+        margin: 0.4rem;
+    }
+}
+
+@media (max-width: 712px) {
+    .circuloPoltrona {
+        padding: 0.2rem;
+        margin: 1rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 0.4rem;
+        margin: 0.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #DivBtnVoltar, #DivInfoPoltrona {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #BtnVoltar, #BtnConfirmar {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    #DivDetalheSessao {
+        flex-direction: column;
+        font-size: 1.2rem;
+    }
+
+    #LabelTela {
+        width: 90%;
+    }
+}
+
+/* Para dispositivos muito pequenos, como smartphones */
+@media (max-width: 480px) {
+    #TituloFilme {
+        font-size: 1.8rem;
+        padding: 1rem;
+    }
+
+    #BtnVoltar, #BtnConfirmar {
+        padding: 0.8rem;
+    }
+
+    .circuloPoltrona {
+        padding: 0.3rem;
+        margin: 0.3rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 0.3rem;
+        margin: 0.3rem;
+    }
+
+    #LabelTela {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+
+    #DivDetalheSessao {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .NumeroPosicaoPoltrona {
+        padding: 0.1rem;
+        margin: 0.13rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .LetraFileiraPoltrona {
+        padding: 0.01rem;
+        margin: 0.01rem;
+    }
+
+    .circuloPoltrona {
+        padding: 0.3rem;
+        margin: 0.2rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 0.1rem;
+        margin: 0.02rem;
+    }
+}
+
+@media (max-width: 330px) {
+    .LetraFileiraPoltrona {
+        padding: 0.01rem;
+        margin: 0.01rem;
+    }
+
+    .circuloPoltrona {
+        padding: 0.3rem;
+        margin: 0.1rem;
+    }
+
+    .NumeroPosicaoPoltrona {
+        padding: 0.01rem;
+        margin: 0.01rem;
+    }
+}
