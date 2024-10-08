@@ -91,18 +91,17 @@ nav {
     padding: 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .DivSessaoFilme:hover {
     background-color: #57af20;
 }
 
-
 .DivSessaoFilme.selected {
     background-color: #70ce36;
     border: 2px solid #62ff00;
 }
-
 
 #DivBtnContinuar {
     display: flex;
@@ -125,4 +124,24 @@ nav {
 #BtnContinuar:hover {
     background-color: #46a30b;
     border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+    #DivSessoesFilme {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #BtnVoltar, #BtnContinuar {
+        width: 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    #DivSessoesFilme {
+        grid-template-columns: 1fr;
+    }
+
+    #BtnVoltar, #BtnContinuar {
+        width: 80%;
+    }
 }
