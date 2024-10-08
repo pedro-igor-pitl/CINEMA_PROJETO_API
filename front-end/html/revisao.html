@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaIngresso</title>
+    <link rel="stylesheet" href="../css/revisao.css"/>
+</head>
+<body>
+    <nav>
+        <img src="../img/logo.jpeg" alt="logo" class="logo"/>
+        <img src="../img/usuario.png" alt="usuarioIcon" id="UsuarioIcon"/>
+        <div id="UsuarioMenu" class="UsuarioMenu">
+            <button class="UsuarioMenuBtn">Meus Pedidos</button>
+            <button class="UsuarioMenuBtn">Dados Pessoais</button>
+            <button class="UsuarioMenuBtn">Sair Da Conta</button>
+        </div>
+    </nav>
+
+    <div id="DivBtnVoltar">
+        <button id="BtnVoltar">Voltar</button>
+    </div>
+
+    <div id="DivRevisaoCompra">
+        <h1 id="LabelRevisao">Revisão</h1>
+        <p class="InfoRevisaoCompra" id="NomeFilme">Coringa: Delírio A Dois</p>
+        <p class="InfoRevisaoCompra" id="LabelQtPoltrona">POLTRONAS: <span id="QtPoltrona">1</span></p>
+        <p class="InfoRevisaoCompra" id="LabelValorTotal">VALOR TOTAL: R$<span id="ValorTotal">13,00</span></p>
+        <p class="InfoRevisaoCompra" id="LabelTipoFilme"><span id="TipoFilme">LEGENDADO</span></p>
+        <p class="InfoRevisaoCompra" id="LabelSala">SALA: <span id="Sala">01</span></p>
+        <p class="InfoRevisaoCompra" id="LabelLocal">LOCAL: <span id="Local">CINEMA - SHOPPING</span></p>
+        <p class="InfoRevisaoCompra" id="LabelDatHor">DATA/HORARIO:<span id="DatHor">05/10 - 13:00</span></p>
+        <p class="InfoRevisaoCompra" id="LabelPoltronasPosicao">POLTRONAS: <span id="PoltronasPosicao">A1</span></p>
+        <div id="DivBtnConfirmar">
+            <button id="BtnConfirmar">CONFIRMAR</button>
+        </div>
+    </div>
+    <script src="../js/revisao.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #414141;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 1rem;
+}
+
+.logo, #UsuarioIcon {
+    max-width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.UsuarioMenuIcon {
+    position: relative;
+}
+
+.UsuarioMenu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: #333;
+    border: 1px solid #53D007;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.UsuarioMenuBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.UsuarioMenuBtn:hover {
+    background-color: #53D007;
+}
+
+#DivBtnVoltar {
+    display: flex;
+    justify-content: end;
+    padding-right: 1rem;
+}
+
+#BtnVoltar {
+    background-color: #5c9b35;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    width: 15%;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+#BtnVoltar:hover {
+    background-color: #46a30b;
+    border-radius: 1rem;
+}
+
+#LabelRevisao {
+    text-align: center;
+}
+
+#DivRevisaoCompra {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+}
+
+.InfoRevisaoCompra {
+    margin: 2rem;
+}
+
+#DivBtnConfirmar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#BtnConfirmar {
+    background-color: #5c9b35;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    width: 80%;
+    padding: 1rem;
+    cursor: pointer;
+    margin-top: 2.5rem;
+    font-size: 1rem;
+}
+
+#BtnConfirmar:hover {
+    background-color: #46a30b;
+    border-radius: 1rem;
+}
+
+
+@media (max-width: 768px) {
+    #DivRevisaoCompra {
+        font-size: 1.2rem;
+    }
+
+    #BtnVoltar, #BtnConfirmar {
+        width: 100%; 
+    }
+}
