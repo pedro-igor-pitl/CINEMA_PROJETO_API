@@ -43,4 +43,3 @@ class Booking(db.Model):
     total_price = db.Column(db.Float)
     booking_time = db.Column(db.DateTime, default=datetime.utcnow)
     seats = db.Column(db.String(128))  # comma-separated list of seat numbers
-"comentario de teste"
