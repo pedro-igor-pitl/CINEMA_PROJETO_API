@@ -1,0 +1,305 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #414141;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 1rem;
+}
+
+.logo, #UsuarioIcon {
+    max-width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.UsuarioMenuIcon {
+    position: relative;
+}
+
+.UsuarioMenu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: #333;
+    border: 1px solid #53D007;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.UsuarioMenuBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.UsuarioMenuBtn:hover {
+    background-color: #53D007;
+}
+
+#DivBtnVoltar {
+    display: flex;
+    justify-content: end;
+    padding-right: 1rem;
+}
+
+#BtnVoltar {
+    background-color: #5c9b35;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    width: 15%;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+#BtnVoltar:hover {
+    background-color: #46a30b;
+    border-radius: 1rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #414141;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 1rem;
+}
+
+.logo, #UsuarioIcon {
+    max-width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.UsuarioMenuIcon {
+    position: relative;
+}
+
+.UsuarioMenu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: #333;
+    border: 1px solid #53D007;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.UsuarioMenuBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.UsuarioMenuBtn:hover {
+    background-color: #53D007;
+}
+
+#DivBtnHome {
+    display: flex;
+    justify-content: end;
+    padding-right: 1rem;
+}
+
+#BtnHome {
+    background-color: #5c9b35;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    width: 15%;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+#BtnHome:hover {
+    background-color: #46a30b;
+    border-radius: 1rem;
+}
+
+#DivCompraFilme {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+#TituloFilme {
+    text-align: center;
+    
+}
+
+#DivDetalhes {
+    display: flex;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #333;
+    border-radius: 0.5rem;
+}
+
+#ImgFilme {
+    width: 40%;
+    border-radius: 0.5rem;
+}
+
+#ImgQrcode {
+    width: 100%;
+}
+
+#DivDetalheCompraFilme {
+    padding: 1rem;
+    margin-left: 20%;
+}
+
+.LabelCompraFilme {
+    font-size: 1.2rem;
+}
+
+#DivDetalheCompra {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+#DivDetalheCompra {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #505847;
+    border-radius: 0.5rem;
+}
+
+#TituloFilme {
+    text-align: center;
+}
+
+#TituloMeusPedidos {
+    text-align: center;
+}
+
+hr {
+    margin: 5rem;
+}
+
+#DivTitutloFilme {
+    text-align: center;
+    background-color: #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.LabelTotal {
+    margin-left: 10%;
+    margin: 2rem;
+}
+
+@media (max-width: 426px) {
+    #DivDetalheCompraFilme {
+        padding: 1rem;
+        margin-left: 1%;
+    }
+
+    #TituloFilme {
+        font-size: 1.5rem;
+    }
+
+    #TituloFilme {
+        margin-right: 10%;
+    }
+    
+    #DivDetalhes {
+        margin-right: 1rem;
+    }
+
+    #ImgFilme {
+        width: 50%;
+    }
+
+    #ImgQrcode {
+        width: 100%;
+    }
+
+    
+    .LabelCompraFilme {
+        font-size: 0.5rem;
+    }
+
+    #DivDetalheCompra {
+        margin-right: 1rem;
+        font-size: 0.4rem;
+    }
+
+}
+
+@media (max-width: 376px) {
+
+    #DivBtnHome {
+        padding-right: 10rem;
+    }
+
+    #BtnHome {
+
+        text-align: center;
+    }
+
+    #TituloFilme {
+        margin-right: 2%;
+    }
+
+    
+    .LabelCompraFilme {
+        font-size: 0.54rem;
+    }
+
+    .LabelTotal {
+        font-size: 0.6rem;
+    }
+
+    #DivDetalheCompra {
+        margin-right: 1rem;
+        font-size: 0.34rem;
+    }
+}
+
+@media (max-width:320px) {
+    .LabelTotal {
+        font-size: 0.45rem;
+    }
+
+    #TituloFilme {
+        font-size: 1.4rem;
+    }
+}
