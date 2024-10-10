@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaIngresso</title>
+    <link rel="stylesheet" href="../css/dadosPessoais.css"/>
+</head>
+<body>
+    <nav>
+        <img src="../img/logo.jpeg" alt="logo" class="logo"/>
+        <img src="../img/usuario.png" alt="usuarioIcon" id="UsuarioIcon"/>
+        <div id="UsuarioMenu" class="UsuarioMenu">
+            <button class="UsuarioMenuBtn">Meus Pedidos</button>
+            <button class="UsuarioMenuBtn">Dados Pessoais</button>
+            <button class="UsuarioMenuBtn">Sair Da Conta</button>
+        </div>
+    </nav>
+    <h1 id="TituloDadosPessoais">DADOS PESSOAIS</h1>
+    <div id="DivDadosPessoais">
+        <form id="FormDadosPessoais" action="#" method="post">
+            <label for="nome">Nome</label>
+            <br>
+            <input type="text" id="nome" class="InputFormDadosPessoais" value="nome"/>
+            <br>
+            <label for="cpf">CPF</label>
+            <br>
+            <input type="text" id="cpf" class="InputFormDadosPessoais" value="cpf"/>
+            <br>
+            <label for="email">EMAIL</label>
+            <br>
+            <input type="text" id="email" class="InputFormDadosPessoais" value="email"/>
+            <br>
+            <label for="senha">SENHA</label>
+            <br>
+            <input type="text" id="senha" class="InputFormDadosPessoais" value="senha"/>
+            <br>
+            <div id="DivBtnConfirmar">
+                <input type="submit" id="BtnConfirmar" value="CONFIRMAR"/>
+            </div>
+        </form>
+    </div>
+    <script src="../js/dadosPessoais.js"></script>
+</body>
+</html>

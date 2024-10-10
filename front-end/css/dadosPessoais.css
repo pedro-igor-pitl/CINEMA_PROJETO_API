@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #414141;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 1rem;
+}
+
+.logo, #UsuarioIcon {
+    max-width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.UsuarioMenuIcon {
+    position: relative;
+}
+
+.UsuarioMenu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: #333;
+    border: 1px solid #53D007;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.UsuarioMenuBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.UsuarioMenuBtn:hover {
+    background-color: #53D007;
+}
+
+#TituloDadosPessoais {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+#DivDadosPessoais {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    height: auto;
+    padding: 2rem;
+}
+
+#FormDadosPessoais {
+    background-color: #00000042;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px black;
+    width: 90%;
+    max-width: 400px;
+}
+
+label {
+    margin: 0.5rem 0;
+}
+
+.InputFormDadosPessoais {
+    border: none;
+    outline: none;
+    margin: 1rem 0;
+    box-shadow: 0 4px rgb(255, 255, 255);
+    background-color: #44444400;
+    color: white;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+#DivBtnConfirmar {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#BtnConfirmar {
+    margin: 1rem;
+    background-color: #66B766;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+#BtnConfirmar:hover {
+    background-color: #539653;
+    border-radius: 1rem;
+}

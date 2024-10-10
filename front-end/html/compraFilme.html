@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaIngresso</title>
+    <link rel="stylesheet" href="../css/compraFilme.css"/>
+</head>
+<body>
+    <nav>
+        <img src="../img/logo.jpeg" alt="logo" class="logo"/>
+        <img src="../img/usuario.png" alt="usuarioIcon" id="UsuarioIcon"/>
+        <div id="UsuarioMenu" class="UsuarioMenu">
+            <button class="UsuarioMenuBtn">Meus Pedidos</button>
+            <button class="UsuarioMenuBtn">Dados Pessoais</button>
+            <button class="UsuarioMenuBtn">Sair Da Conta</button>
+        </div>
+    </nav>
+
+    <div id="DivBtnHome">
+        <button id="BtnHome">HOME</button>
+    </div>
+
+    <div id="DivCompraFilme">
+        <h1 id="TituloFilme">Coringa: Delírio A Dois</h1>
+        <div id="DivDetalhes">
+            <img id="ImgFilme" src="../img/coringaImg.jpg"/>
+            <div id="DivDetalheCompraFilme">
+                <img id="ImgQrcode" src="../img/qrcode.png"/>
+                <p class="LabelCompraFilme">LOCAL: <span id="local">CINEMA - SHOPPING</span></p>
+                <p class="LabelCompraFilme"><span id="tipoFilme">LEGENDADO</span></p>
+                <p class="LabelCompraFilme">DATA/HORARIO: <span id="dataHora">05/10 - 13:00</span></p>
+                <p class="LabelCompraFilme">ID DA COMPRA: <span id="id_compra">000001</span></p>
+                <p class="LabelCompraFilme">SALA: <span id="sala">01</span></p>
+                <p class="LabelCompraFilme">ASSENTOS: <span id="nomeAssento">A1</span></p>
+            </div>
+        </div>
+        <div id="DivDetalheCompra">
+            <h1 class="LabelTotal">TOTAL ASSENTOS: <span id="TotalAssento">1</span></h1>
+            <h1 class="LabelTotal">Total: R$<span id="TotalValor">13,00</span></h1>
+        </div>
+    </div>
+    <script src="../js/compraFilme.js"></script>
+</body>
+</html>
