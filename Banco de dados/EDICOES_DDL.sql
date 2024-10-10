@@ -51,13 +51,3 @@ DROP COLUMN preco;
 
 ALTER TABLE filme
 ADD COLUMN data_lancamento DATE;
-
-ALTER TABLE usuario
-ADD CONSTRAINT cliente_cpf_unique UNIQUE (cpf);
-
-ALTER TABLE usuario
-ALTER COLUMN email TYPE VARCHAR(100),
-ALTER COLUMN email SET NOT NULL;
-
-ALTER TABLE filme
-ALTER COLUMN data_lancamento TYPE VARCHAR(20);
