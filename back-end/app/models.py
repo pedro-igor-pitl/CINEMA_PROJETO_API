@@ -1,45 +1,66 @@
-from app import db
-from datetime import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128))
+# Modelo para a entidade Usuario
+class Usuario(db.Model):
+    __tablename__ = 'usuario'
+    id_usuario = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), nullable=False)
+    cpf = db.Column(db.String(11), nullable=False)
+    nome = db.Column(db.String(100), nullable=False)
+    senha = db.Column(db.String(100), nullable=False)
 
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+# Modelo para a entidade Filme
+class Filme(db.Model):
+    __tablename__ = 'filme'
+    id_filme = db.Column(db.Integer, primary_key=True)
+    nome_filme = db.Column(db.String(200), nullable=False)
+    data_filme = db.Column(db.String(20), nullable=False) 
+    duracao = db.Column(db.String(20), nullable=False)  
+    genero = db.Column(db.String(50), nullable=False)
+    caminho_img = db.Column(db.String(255), nullable=True)
+    descricao = db.Column(db.Text, nullable=True)
 
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+# Modelo para a entidade Sala
+class Sala(db.Model):
+    __tablename__ = 'sala'
+    id_sala = db.Column(db.Integer, primary_key=True)
+    preco = db.Column(db.Float, nullable=False)
+    qt_poltrona = db.Column(db.Integer, nullable=False)
 
-class Movie(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128), nullable=False)
-    genre = db.Column(db.String(64))
-    release_date = db.Column(db.Date)
-    duration = db.Column(db.Integer)  # in minutes
-    description = db.Column(db.Text)
+# Modelo para a entidade Poltrona
+class Poltrona(db.Model):
+    __tablename__ = 'poltrona'
+    id_poltrona = db.Column(db.Integer, primary_key=True)
+    id_sala = db.Column(db.Integer, db.ForeignKey('sala.id_sala'), nullable=False)
+    tipo_poltrona = db.Column(db.String(50), nullable=False)
+    posicao = db.Column(db.String(50), nullable=False)
 
-class Showtime(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
-    start_time = db.Column(db.DateTime, nullable=False)
-    cinema_hall = db.Column(db.String(64), nullable=False)
-    movie = db.relationship('Movie', backref='showtimes')
+# Modelo para a entidade Sessao
+class Sessao(db.Model):
+    __tablename__ = 'sessao'
+    id_sessao = db.Column(db.Integer, primary_key=True)
+    data = db.Column(db.String(20), nullable=False)
+    preco = db.Column(db.Float, nullable=False)
+    linguagem = db.Column(db.String(50), nullable=False)
+    id_sala = db.Column(db.Integer, db.ForeignKey('sala.id_sala'), nullable=False)
 
-class Seat(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    showtime_id = db.Column(db.Integer, db.ForeignKey('showtime.id'))
-    seat_number = db.Column(db.String(5))
-    is_available = db.Column(db.Boolean, default=True)
-    showtime = db.relationship('Showtime', backref='seats')
+# Modelo para a tabela de relacionamento Sessao e Filme
+class SessaoFilme(db.Model):
+    __tablename__ = 'sessaofilme'
+    id_sessao = db.Column(db.Integer, db.ForeignKey('sessao.id_sessao'), primary_key=True)
+    id_filme = db.Column(db.Integer, db.ForeignKey('filme.id_filme'), primary_key=True)
 
-class Booking(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    showtime_id = db.Column(db.Integer, db.ForeignKey('showtime.id'))
-    total_price = db.Column(db.Float)
-    booking_time = db.Column(db.DateTime, default=datetime.utcnow)
-    seats = db.Column(db.String(128))  # comma-separated list of seat numbers
+# Modelo para a entidade Ingresso
+class Ingresso(db.Model):
+    __tablename__ = 'ingresso'
+    id_ingresso = db.Column(db.Integer, primary_key=True)
+    qr_code = db.Column(db.String(200), nullable=False)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False)
+    data_pedido = db.Column(db.DateTime, nullable=False)
+
+# Modelo para a tabela de relacionamento Sala e Ingresso
+class SalaIngresso(db.Model):
+    __tablename__ = 'salaingresso'
+    id_sala = db.Column(db.Integer, db.ForeignKey('sala.id_sala'), primary_key=True)
+    id_ingresso = db.Column(db.Integer, db.ForeignKey('ingresso.id_ingresso'), primary_key=True)
