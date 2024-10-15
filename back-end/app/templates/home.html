@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaIngresso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}"/>
+</head>
+<body>
+    <nav>
+        <img src="../img/logo.jpeg" alt="logo" class="logo"/>
+        <img src="../img/usuario.png" alt="usuarioIcon" id="UsuarioIcon"/>
+        <div id="UsuarioMenu" class="UsuarioMenu">
+            <button class="UsuarioMenuBtn">Meus Pedidos</button>
+            <button class="UsuarioMenuBtn">Dados Pessoais</button>
+            <button class="UsuarioMenuBtn">Sair Da Conta</button>
+        </div>
+        
+    </nav>
+    <div class="ImgFilmeAlta" id="ImgFilmeAlta">
+        <button class="BtnAnteriorEmAlta"><</button>
+        <div class="FilmeImgDiv active">
+            <a href=""><img src="../img/coringaBanner.jpeg" class="FilmeBannerImg" alt="Filme 1"/></a>
+        </div>
+        <div class="FilmeImgDiv">
+            <a href="#"><img src="../img/FilmeImgTheWildRobot.jpeg" class="FilmeBannerImg" alt="Filme 2"/></a>
+        </div>
+        <div class="FilmeImgDiv">
+            <img src="../img/coringaBanner.jpeg" class="FilmeBannerImg" alt="Filme 3"/>
+        </div>
+        <div class="FilmeImgDiv">
+            <img src="../img/FilmeImgTheWildRobot.jpeg" class="FilmeBannerImg" alt="Filme 4"/>
+        </div>
+        <div class="FilmeImgDiv">
+            <img src="../img/coringaBanner.jpeg" class="FilmeBannerImg" alt="Filme 5"/>
+        </div>
+        <button class="BtnProximoEmAlta">></button>
+
+        <div class="DivCirculoFilme">
+            <button class="CirculoFilme"></button>
+            <button class="CirculoFilme"></button>
+            <button class="CirculoFilme"></button>
+            <button class="CirculoFilme"></button>
+            <button class="CirculoFilme"></button>
+        </div>
+    </div>
+
+    <div class="DivLabelEmCartaz">
+        <h1 class="LabelEmCartaz">Em Cartaz</h1>
+    </div>
+    <div class="DivFilmeEmCartaz">
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+        </div>
+        <div class="DivImgFilme">
+            <img class="ImgFilme" src="../img/coringaImg.jpg" alt="Coringa: Delírio A Dois"/>
+            <p>Coringa: Delírio A Dois</p>
+            
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>
