@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from .database import db
 from .dtos import LoginDTO
-from .models import Usuario
+from .models import Usuario, Filme
 
 
 def create_app():
@@ -65,5 +65,13 @@ def create_app():
     @app.route('/home_filmes', methods=['GET'])
     def home_filmes():
         return render_template("home.html")
+
+    @app.route('/filme/<int:id_filme>', methods=['GET'])
+    def detalhes_filme(id_filme):
+        filme = Filme.query.get(id_filme)  # Obtenha o filme do banco de dados
+        if filme:
+            return render_template('filme.html', filme=filme)
+        else:
+            return jsonify({"error": "Filme não encontrado"}), 404
 
     return app
