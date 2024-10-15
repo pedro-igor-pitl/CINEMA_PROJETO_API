@@ -1,0 +1,220 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #414141;
+    color: white;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 1rem;
+}
+
+.logo, #UsuarioIcon{
+    max-width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.UsuarioMenuIcon {
+    position: relative;
+}
+
+.UsuarioMenu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: #333;
+    border: 1px solid #53D007;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.UsuarioMenuBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.UsuarioMenuBtn:hover {
+    background-color: #53D007;
+}
+
+.ImgFilmeAlta {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    overflow: hidden;
+}
+
+.FilmeImgDiv {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.FilmeImgDiv.active {
+    display: block;
+}
+
+.FilmeBannerImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.BtnAnteriorEmAlta, .BtnProximoEmAlta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.637);
+    color: #53D007;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.BtnAnteriorEmAlta:hover, .BtnProximoEmAlta:hover {
+    background-color: rgba(0, 0, 0, 0.897);
+    color: #53D007;
+}
+
+.BtnAnteriorEmAlta {
+    left: 0;
+}
+
+.BtnProximoEmAlta {
+    right: 0;
+}
+
+.DivCirculoFilme {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.CirculoFilme {
+    width: 15px;
+    height: 15px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.CirculoFilme.active {
+    background-color: #53D007;
+}
+
+.DivLabelEmCartaz {
+    margin: 2rem 0;
+}
+
+.DivFilmeEmCartaz {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+}
+
+.DivFilmeEmCartaz div {
+    flex: 0 0 auto;
+}
+
+.DivFilmeEmCartaz img {
+    width: 100px;
+    height: auto;
+}
+
+.BtnAntProEmCartaz {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.LabelEmCartaz {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
+}
+.BtnAntProEmCartaz {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.BtnAnteriorEmCartaz {
+    background-color: rgba(0, 0, 0, 0.705);
+    color: #53D007;
+    padding: 1rem;
+    border: none;
+}
+
+.BtnProximoEmCartaz {
+    background-color: rgba(0, 0, 0, 0.705);
+    color: #53D007;
+    padding: 1rem;
+    border: none;
+
+}
+
+.DivFilmeEmCartaz {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.DivImgFilme {
+    flex: 0 0 auto;
+    width: auto;
+    text-align: center;
+}
+
+.DivFilmeEmCartaz img {
+    width: 150px;
+    height: auto;
+}
+
+.ImgFilme {
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.63);
+}
+
+.ImgFilme:hover {
+    border-radius: 1rem;
+    cursor: pointer;
+    filter: brightness(.7);
+}
+
+p {
+    padding: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.DivImgFilme {
+    max-width: 200px;
+    margin: 10px;
+    text-align: center;
+}
+
+.DivImgFilme p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin: 5px 0;
+}
