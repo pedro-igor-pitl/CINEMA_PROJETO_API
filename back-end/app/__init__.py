@@ -6,11 +6,11 @@ from .models import Usuario, Filme
 
 def create_app():
     app = Flask(__name__)
-    senha = 'Souz@105696'
+    #senha = 'Souz@105696'
+    senha = '1234'
     # Configurações do banco de dados PostgreSQL105696localhost
     app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{senha}@localhost:5432/cinema_api'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Souz@localhost:5432/cinema_api'
-
+    print("Chegou aqui");
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['SECRET_KEY'] = '9d6a0f900ca80f21e659c6bcba698913'
