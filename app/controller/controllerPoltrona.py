@@ -1,16 +1,14 @@
 from flask import Blueprint, request, jsonify
-from app.config.database import db
-from app.models.sala import Sala
-from app.repositories.sala_repository import SalaRepository
+from ..service.servicePoltrona import ServicePoltrona
 
-# Criação do Blueprint para o controller de sala
-sala_bp = Blueprint('sala', __name__)
+# Define a Blueprint for poltrona
+poltrona_bp = Blueprint('poltrona_bp', __name__, template_folder='templates')
 
-# Instância do repositório de sala
-sala_repository = SalaRepository(db.session)
+# Instância do repositório de poltrona
+service_poltrona = ServicePoltrona()
 
-@sala_bp.route('/sala', methods=['POST'])
-def criar_sala():
+@poltrona_bp.route('/poltrona', methods=['POST'])
+def criar_poltrona():
     data = request.json
     qt_poltrona = data.get('qt_poltrona')
     id_sessao = data.get('id_sessao')
@@ -18,57 +16,57 @@ def criar_sala():
     if qt_poltrona is None or id_sessao is None:
         return jsonify({"error": "Todos os campos são obrigatórios."}), 400
 
-    nova_sala = Sala(
+    nova_poltrona = Poltrona(
         qt_poltrona=qt_poltrona,
         id_sessao=id_sessao
     )
 
-    sala_salva = sala_repository.save(nova_sala)
-    return jsonify({"message": "Sala criada com sucesso.", "sala": sala_salva.id_sala}), 201
+    poltrona_salva = service_poltrona.save(nova_poltrona)
+    return jsonify({"message": "Poltrona criada com sucesso.", "poltrona": poltrona_salva.id_poltrona}), 201
 
-@sala_bp.route('/sala/<int:id_sala>', methods=['GET'])
-def obter_sala(id_sala):
-    sala = sala_repository.find_by_id(id_sala)
-    if sala:
+@poltrona_bp.route('/poltrona/<int:id_poltrona>', methods=['GET'])
+def obter_poltrona(id_poltrona):
+    poltrona = service_poltrona.find_by_id(id_poltrona)
+    if poltrona:
         return jsonify({
-            "id_sala": sala.id_sala,
-            "qt_poltrona": sala.qt_poltrona,
-            "id_sessao": sala.id_sessao
+            "id_poltrona": poltrona.id_poltrona,
+            "qt_poltrona": poltrona.qt_poltrona,
+            "id_sessao": poltrona.id_sessao
         }), 200
     else:
-        return jsonify({"error": "Sala não encontrada."}), 404
+        return jsonify({"error": "Poltrona não encontrada."}), 404
 
-@sala_bp.route('/salas', methods=['GET'])
-def listar_salas():
-    salas = sala_repository.find_all()
-    salas_list = [
+@poltrona_bp.route('/poltronas', methods=['GET'])
+def listar_poltronas():
+    poltronas = service_poltrona.find_all()
+    poltronas_list = [
         {
-            "id_sala": sala.id_sala,
-            "qt_poltrona": sala.qt_poltrona,
-            "id_sessao": sala.id_sessao
+            "id_poltrona": poltrona.id_poltrona,
+            "qt_poltrona": poltrona.qt_poltrona,
+            "id_sessao": poltrona.id_sessao
         }
-        for sala in salas
+        for poltrona in poltronas
     ]
-    return jsonify(salas_list), 200
+    return jsonify(poltronas_list), 200
 
-@sala_bp.route('/sala/<int:id_sala>', methods=['PUT'])
-def atualizar_sala(id_sala):
+@poltrona_bp.route('/poltrona/<int:id_poltrona>', methods=['PUT'])
+def atualizar_poltrona(id_poltrona):
     data = request.json
-    sala_existente = sala_repository.find_by_id(id_sala)
-    if not sala_existente:
-        return jsonify({"error": "Sala não encontrada."}), 404
+    poltrona_existente = service_poltrona.find_by_id(id_poltrona)
+    if not poltrona_existente:
+        return jsonify({"error": "Poltrona não encontrada."}), 404
 
-    sala_existente.qt_poltrona = data.get('qt_poltrona', sala_existente.qt_poltrona)
-    sala_existente.id_sessao = data.get('id_sessao', sala_existente.id_sessao)
+    poltrona_existente.qt_poltrona = data.get('qt_poltrona', poltrona_existente.qt_poltrona)
+    poltrona_existente.id_sessao = data.get('id_sessao', poltrona_existente.id_sessao)
 
-    sala_atualizada = sala_repository.update(sala_existente)
-    return jsonify({"message": "Sala atualizada com sucesso.", "sala": sala_atualizada.id_sala}), 200
+    poltrona_atualizada = service_poltrona.update(poltrona_existente)
+    return jsonify({"message": "Poltrona atualizada com sucesso.", "poltrona": poltrona_atualizada.id_poltrona}), 200
 
-@sala_bp.route('/sala/<int:id_sala>', methods=['DELETE'])
-def deletar_sala(id_sala):
-    sala_existente = sala_repository.find_by_id(id_sala)
-    if not sala_existente:
-        return jsonify({"error": "Sala não encontrada."}), 404
+@poltrona_bp.route('/poltrona/<int:id_poltrona>', methods=['DELETE'])
+def deletar_poltrona(id_poltrona):
+    poltrona_existente = service_poltrona.find_by_id(id_poltrona)
+    if not poltrona_existente:
+        return jsonify({"error": "Poltrona não encontrada."}), 404
 
-    sala_repository.delete(id_sala)
-    return jsonify({"message": "Sala deletada com sucesso."}), 200
+    service_poltrona.delete(id_poltrona)
+    return jsonify({"message": "Poltrona deletada com sucesso."}), 200

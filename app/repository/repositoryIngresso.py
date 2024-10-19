@@ -1,6 +1,6 @@
 from ..model.modelIngresso import Ingresso
 
-class repositoryIngresso:
+class RepositoryIngresso:
     def __init__(self, db_session):
         self.db_session = db_session
 

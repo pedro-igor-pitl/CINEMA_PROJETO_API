@@ -1,13 +1,11 @@
 from flask import Blueprint, request, jsonify
-from app.config.database import db
-from app.models.ingresso import Ingresso
-from app.repositories.ingresso_repository import IngressoRepository
+from ..service.serviceIngresso import ServiceIngresso
 
 # Criação do Blueprint para o controller de ingresso
 ingresso_bp = Blueprint('ingresso', __name__)
 
 # Instância do repositório de ingresso
-ingresso_repository = IngressoRepository(db.session)
+service_ingresso = ServiceIngresso()
 
 @ingresso_bp.route('/ingresso', methods=['POST'])
 def criar_ingresso():
@@ -29,12 +27,12 @@ def criar_ingresso():
         data_pedido=data_pedido
     )
 
-    ingresso_salvo = ingresso_repository.save(novo_ingresso)
+    ingresso_salvo = service_ingresso.save(novo_ingresso)
     return jsonify({"message": "Ingresso criado com sucesso.", "ingresso": ingresso_salvo.id_ingresso}), 201
 
 @ingresso_bp.route('/ingresso/<int:id_ingresso>', methods=['GET'])
 def obter_ingresso(id_ingresso):
-    ingresso = ingresso_repository.find_by_id(id_ingresso)
+    ingresso = service_ingresso.find_by_id(id_ingresso)
     if ingresso:
         return jsonify({
             "id_ingresso": ingresso.id_ingresso,
@@ -49,7 +47,7 @@ def obter_ingresso(id_ingresso):
 
 @ingresso_bp.route('/ingressos', methods=['GET'])
 def listar_ingressos():
-    ingressos = ingresso_repository.find_all()
+    ingressos = service_ingresso.find_all()
     ingressos_list = [
         {
             "id_ingresso": ingresso.id_ingresso,
@@ -66,7 +64,7 @@ def listar_ingressos():
 @ingresso_bp.route('/ingresso/<int:id_ingresso>', methods=['PUT'])
 def atualizar_ingresso(id_ingresso):
     data = request.json
-    ingresso_existente = ingresso_repository.find_by_id(id_ingresso)
+    ingresso_existente = service_ingresso.find_by_id(id_ingresso)
     if not ingresso_existente:
         return jsonify({"error": "Ingresso não encontrado."}), 404
 
@@ -76,14 +74,14 @@ def atualizar_ingresso(id_ingresso):
     ingresso_existente.qrcode = data.get('qrcode', ingresso_existente.qrcode)
     ingresso_existente.data_pedido = data.get('data_pedido', ingresso_existente.data_pedido)
 
-    ingresso_atualizado = ingresso_repository.update(ingresso_existente)
+    ingresso_atualizado = service_ingresso.update(ingresso_existente)
     return jsonify({"message": "Ingresso atualizado com sucesso.", "ingresso": ingresso_atualizado.id_ingresso}), 200
 
 @ingresso_bp.route('/ingresso/<int:id_ingresso>', methods=['DELETE'])
 def deletar_ingresso(id_ingresso):
-    ingresso_existente = ingresso_repository.find_by_id(id_ingresso)
+    ingresso_existente = service_ingresso.find_by_id(id_ingresso)
     if not ingresso_existente:
         return jsonify({"error": "Ingresso não encontrado."}), 404
 
-    ingresso_repository.delete(id_ingresso)
+    service_ingresso.delete(id_ingresso)
     return jsonify({"message": "Ingresso deletado com sucesso."}), 200

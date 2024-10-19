@@ -1,6 +1,6 @@
 from ..model.modelFilme import Filme
 
-class repositoryFilme:
+class RepositoryFilme:
     def __init__(self, db_session):
         self.db_session = db_session
 
