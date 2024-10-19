@@ -1,3 +1,4 @@
+from sqlalchemy import Column, Integer, String
 from ..config.database import db
 
 class Usuario(db.Model):
@@ -7,3 +8,12 @@ class Usuario(db.Model):
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     senha = db.Column(db.String(100), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id_usuario': self.id_usuario,
+            'nome': self.nome,
+            'email': self.email,
+            'cpf': self.cpf,
+            'senha': self.senha 
+        }

@@ -2,8 +2,8 @@ from ..model.modelUsuario import Usuario
 from ..repository.repositoryUsuario import RepositoryUsuario
 
 class ServiceUsuario:
-    def __init__(self):
-        self.RepositoryUsuario = RepositoryUsuario()
+    def __init__(self, db):
+        self.RepositoryUsuario = RepositoryUsuario(db)
 
     def criar_usuario(self, nome, email, senha, cpf):
         """Cria um novo usuário e salva no banco de dados"""
