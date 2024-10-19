@@ -1,3 +1,4 @@
+from sqlalchemy import Integer, ForeignKey, Column
 from ..config.database import db
 
 class Sala(db.Model):
@@ -5,3 +6,10 @@ class Sala(db.Model):
     id_sala = db.Column(db.Integer, primary_key=True)
     qt_poltrona = db.Column(db.Integer, nullable=False)
     id_sessao = db.Column(db.Integer, db.ForeignKey('sessao.id_sessao'), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id_sala': self.id_sala,
+            'qt_poltrona': self.qt_poltrona,
+            'id_sessao': self.id_sessao
+        }

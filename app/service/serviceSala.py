@@ -2,8 +2,8 @@ from ..model.modelSala import Sala
 from ..repository.repositorySala import RepositorySala
 
 class ServiceSala:
-    def __init__(self):
-        self.RepositorySala = RepositorySala
+    def __init__(self, db):
+        self.RepositorySala = RepositorySala(db)
 
     def criar_sala(self, qt_poltrona, id_sessao):
         """Cria uma nova sala e salva no banco de dados"""

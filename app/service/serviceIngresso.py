@@ -2,8 +2,8 @@ from ..model.modelIngresso import Ingresso
 from ..repository.repositoryIngresso import RepositoryIngresso
 
 class ServiceIngresso:
-    def __init__(self):
-        self.RepositoryIngresso = RepositoryIngresso
+    def __init__(self, db):
+        self.RepositoryIngresso = RepositoryIngresso(db)
 
     def criar_ingresso(self, id_usuario, id_sala, id_poltrona, qrcode, data_pedido):
         """Cria um novo ingresso e salva no banco de dados"""

@@ -1,6 +1,5 @@
 from ..model.modelUsuario import Usuario
 
-
 class RepositoryUsuario:
     def __init__(self, db):
         self.db = db

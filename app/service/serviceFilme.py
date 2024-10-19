@@ -2,19 +2,12 @@ from ..model.modelFilme import Filme
 from ..repository.repositoryFilme import RepositoryFilme
 
 class ServiceFilme:
-    def __init__(self):
-        self.RepositoryFilme = RepositoryFilme
+    def __init__(self, db):
+        self.RepositoryFilme = RepositoryFilme(db)
 
     def criar_filme(self, nome_filme, descricao, caminho_img, duracao, genero, data_lancamento):
         """Cria um novo filme e salva no banco de dados"""
-        novo_filme = Filme(  
-            nome_filme=nome_filme,
-            descricao=descricao,
-            caminho_img=caminho_img,
-            duracao=duracao,
-            genero=genero,
-            data_lancamento=data_lancamento
-        )
+        novo_filme = Filme(nome_filme=nome_filme, descricao=descricao, caminho_img=caminho_img, duracao=duracao, genero=genero, data_lancamento=data_lancamento)
         return self.RepositoryFilme.save(novo_filme)
 
     def obter_filme_por_id(self, id_filme):
@@ -25,8 +18,7 @@ class ServiceFilme:
         """Retorna todos os filmes"""
         return self.RepositoryFilme.find_all()
 
-    def atualizar_filme(self, id_filme, nome_filme=None, descricao=None, caminho_img=None,
-                        duracao=None, genero=None, data_lancamento=None):
+    def atualizar_filme(self, id_filme, nome_filme=None, descricao=None, caminho_img=None, duracao=None, genero=None, data_lancamento=None):
         """Atualiza as informações de um filme existente"""
         filme = self.RepositoryFilme.find_by_id(id_filme)
         if filme:

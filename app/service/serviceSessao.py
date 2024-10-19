@@ -2,8 +2,8 @@ from ..model.modelSessao import Sessao
 from ..repository.repositorySessao import RepositorySessao
 
 class SessaoService:
-    def __init__(self):
-        self.RepositorySessao = RepositorySessao
+    def __init__(self, db):
+        self.RepositorySessao = RepositorySessao(db)
 
     def criar_sessao(self, data, id_sala, preco, linguagem):
         """Cria uma nova sessão e salva no banco de dados"""

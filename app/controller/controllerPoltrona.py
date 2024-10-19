@@ -1,72 +1,56 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify, request, abort
+from ..config.database import db
 from ..service.servicePoltrona import ServicePoltrona
 
-# Define a Blueprint for poltrona
+# Define a Blueprint para poltrona
 poltrona_bp = Blueprint('poltrona_bp', __name__, template_folder='templates')
 
-# Instância do repositório de poltrona
-service_poltrona = ServicePoltrona()
+# Instância do serviço de poltrona
+service_poltrona = ServicePoltrona(db)
 
-@poltrona_bp.route('/poltrona', methods=['POST'])
+# Rota para criar uma nova poltrona (POST)
+@poltrona_bp.route('/poltronas', methods=['POST'])
 def criar_poltrona():
-    data = request.json
-    qt_poltrona = data.get('qt_poltrona')
-    id_sessao = data.get('id_sessao')
+    dados = request.get_json()
+    qt_poltrona = dados.get('qt_poltrona')
+    id_sessao = dados.get('id_sessao')
 
     if qt_poltrona is None or id_sessao is None:
-        return jsonify({"error": "Todos os campos são obrigatórios."}), 400
+        abort(400, description="Todos os campos são obrigatórios.")
 
-    nova_poltrona = Poltrona(
-        qt_poltrona=qt_poltrona,
-        id_sessao=id_sessao
-    )
+    nova_poltrona = service_poltrona.criar_poltrona(qt_poltrona, id_sessao)
+    return jsonify(nova_poltrona.to_dict()), 201
 
-    poltrona_salva = service_poltrona.save(nova_poltrona)
-    return jsonify({"message": "Poltrona criada com sucesso.", "poltrona": poltrona_salva.id_poltrona}), 201
-
-@poltrona_bp.route('/poltrona/<int:id_poltrona>', methods=['GET'])
+# Rota para obter uma poltrona pelo ID (GET)
+@poltrona_bp.route('/poltronas/<int:id_poltrona>', methods=['GET'])
 def obter_poltrona(id_poltrona):
-    poltrona = service_poltrona.find_by_id(id_poltrona)
-    if poltrona:
-        return jsonify({
-            "id_poltrona": poltrona.id_poltrona,
-            "qt_poltrona": poltrona.qt_poltrona,
-            "id_sessao": poltrona.id_sessao
-        }), 200
-    else:
-        return jsonify({"error": "Poltrona não encontrada."}), 404
+    poltrona = service_poltrona.obter_poltrona_por_id(id_poltrona)
+    if poltrona is None:
+        abort(404, description="Poltrona não encontrada.")
+    return jsonify(poltrona.to_dict())
 
+# Rota para listar todas as poltronas (GET)
 @poltrona_bp.route('/poltronas', methods=['GET'])
 def listar_poltronas():
-    poltronas = service_poltrona.find_all()
-    poltronas_list = [
-        {
-            "id_poltrona": poltrona.id_poltrona,
-            "qt_poltrona": poltrona.qt_poltrona,
-            "id_sessao": poltrona.id_sessao
-        }
-        for poltrona in poltronas
-    ]
-    return jsonify(poltronas_list), 200
+    poltronas = service_poltrona.listar_poltronas()
+    return jsonify([poltrona.to_dict() for poltrona in poltronas])
 
-@poltrona_bp.route('/poltrona/<int:id_poltrona>', methods=['PUT'])
+# Rota para atualizar uma poltrona existente (PUT)
+@poltrona_bp.route('/poltronas/<int:id_poltrona>', methods=['PUT'])
 def atualizar_poltrona(id_poltrona):
-    data = request.json
-    poltrona_existente = service_poltrona.find_by_id(id_poltrona)
-    if not poltrona_existente:
-        return jsonify({"error": "Poltrona não encontrada."}), 404
+    dados = request.get_json()
+    qt_poltrona = dados.get('qt_poltrona')
+    id_sessao = dados.get('id_sessao')
 
-    poltrona_existente.qt_poltrona = data.get('qt_poltrona', poltrona_existente.qt_poltrona)
-    poltrona_existente.id_sessao = data.get('id_sessao', poltrona_existente.id_sessao)
+    poltrona_atualizada = service_poltrona.atualizar_poltrona(id_poltrona, qt_poltrona, id_sessao)
+    if poltrona_atualizada is None:
+        abort(404, description="Poltrona não encontrada.")
+    return jsonify(poltrona_atualizada.to_dict())
 
-    poltrona_atualizada = service_poltrona.update(poltrona_existente)
-    return jsonify({"message": "Poltrona atualizada com sucesso.", "poltrona": poltrona_atualizada.id_poltrona}), 200
-
-@poltrona_bp.route('/poltrona/<int:id_poltrona>', methods=['DELETE'])
+# Rota para deletar uma poltrona (DELETE)
+@poltrona_bp.route('/poltronas/<int:id_poltrona>', methods=['DELETE'])
 def deletar_poltrona(id_poltrona):
-    poltrona_existente = service_poltrona.find_by_id(id_poltrona)
-    if not poltrona_existente:
-        return jsonify({"error": "Poltrona não encontrada."}), 404
-
-    service_poltrona.delete(id_poltrona)
-    return jsonify({"message": "Poltrona deletada com sucesso."}), 200
+    resultado = service_poltrona.deletar_poltrona(id_poltrona)
+    if not resultado:
+        abort(404, description="Poltrona não encontrada.")
+    return jsonify({"mensagem": "Poltrona deletada com sucesso"}), 204

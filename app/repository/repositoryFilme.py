@@ -1,19 +1,19 @@
 from ..model.modelFilme import Filme
 
 class RepositoryFilme:
-    def __init__(self, db_session):
-        self.db_session = db_session
+    def __init__(self, db):
+        self.db = db
 
     def save(self, filme):
-        self.db_session.add(filme)
-        self.db_session.commit()
+        self.db.session.add(filme)
+        self.db.session.commit()
         return filme
 
     def find_by_id(self, id_filme):
-        return self.db_session.query(Filme).get(id_filme)
+        return self.db.session.query(Filme).get(id_filme)
 
     def find_all(self):
-        return self.db_session.query(Filme).all()
+        return self.db.session.query(Filme).all()
 
     def update(self, filme):
         existing_filme = self.find_by_id(filme.id_filme)
@@ -24,11 +24,11 @@ class RepositoryFilme:
             existing_filme.duracao = filme.duracao
             existing_filme.genero = filme.genero
             existing_filme.data_lancamento = filme.data_lancamento
-            self.db_session.commit()
+            self.db.session.commit()
         return existing_filme
 
     def delete(self, id_filme):
         filme = self.find_by_id(id_filme)
         if filme:
-            self.db_session.delete(filme)
-            self.db_session.commit()
+            self.db.session.delete(filme)
+            self.db.session.commit()

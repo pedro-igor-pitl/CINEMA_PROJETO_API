@@ -2,8 +2,8 @@ from ..model.modelPoltrona import Poltrona
 from ..repository.repositoryPoltrona import RepositoryPoltrona
 
 class ServicePoltrona:
-    def __init__(self):
-        self.RepositoryPoltrona = RepositoryPoltrona()
+    def __init__(self, db):
+        self.RepositoryPoltrona = RepositoryPoltrona(db)
 
     def criar_poltrona(self, posicao, tipo_poltrona, id_sala):
         """Cria uma nova poltrona e salva no banco de dados"""

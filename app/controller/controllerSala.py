@@ -1,11 +1,11 @@
 from flask import Blueprint, request, jsonify
+from ..config.database import db
 from ..service.serviceSala import ServiceSala
 
 sala_bp = Blueprint('sala_bp', __name__, template_folder='templates')
 
-
 # Instância do repositório de sala
-service_sala = ServiceSala()
+service_sala = ServiceSala(db)
 
 @sala_bp.route('/sala', methods=['POST'])
 def criar_sala():
@@ -38,7 +38,7 @@ def obter_sala(id_sala):
 
 @sala_bp.route('/salas', methods=['GET'])
 def listar_salas():
-    salas = service_sala.find_all()
+    salas = service_sala.listar_salas()
     salas_list = [
         {
             "id_sala": sala.id_sala,

@@ -1,12 +1,11 @@
 from flask import Blueprint, request, jsonify
+from ..config.database import db
 from ..service.serviceSessao import SessaoService
 
-
-# Criação do Blueprint para o controller de sessão
 sessao_bp = Blueprint('sessao_bp', __name__, template_folder='templates')
 
 # Instância do repositório de sessão
-service_sessao = SessaoService()
+service_sessao = SessaoService(db)
 
 @sessao_bp.route('/sessao', methods=['POST'])
 def criar_sessao():
@@ -45,7 +44,7 @@ def obter_sessao(id_sessao):
 
 @sessao_bp.route('/sessoes', methods=['GET'])
 def listar_sessoes():
-    sessoes = service_sessao.find_all()
+    sessoes = service_sessao.listar_sessoes()
     sessoes_list = [
         {
             "id_sessao": sessao.id_sessao,
