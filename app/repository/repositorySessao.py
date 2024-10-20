@@ -23,10 +23,13 @@ class RepositorySessao:
             existing_sessao.preco = sessao.preco
             existing_sessao.linguagem = sessao.linguagem
             self.db.session.commit()
-        return existing_sessao
+            return existing_sessao  # Retorna a sessão atualizada
+        return None  # Retorna None se a sessão não for encontrada
 
     def delete(self, id_sessao):
         sessao = self.find_by_id(id_sessao)
         if sessao:
             self.db.session.delete(sessao)
-            self.db.session.commit()
+            self.db.session.commit()  # Realiza o commit para persistir a deleção
+            return True  # Retorna True indicando que a deleção foi bem-sucedida
+        return False  # Retorna False se a sessão não for encontrada
