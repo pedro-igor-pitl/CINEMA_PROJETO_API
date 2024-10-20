@@ -52,14 +52,15 @@ def listar_salas():
 @sala_bp.route('/sala/<int:id_sala>', methods=['PUT'])
 def atualizar_sala(id_sala):
     data = request.json
-    sala_existente = service_sala.find_by_id(id_sala)
+    sala_existente = service_sala.obter_sala_por_id(id_sala)
     if not sala_existente:
         return jsonify({"error": "Sala não encontrada."}), 404
 
     sala_existente.qt_poltrona = data.get('qt_poltrona', sala_existente.qt_poltrona)
     sala_existente.id_sessao = data.get('id_sessao', sala_existente.id_sessao)
 
-    sala_atualizada = service_sala.update(sala_existente)
+    sala_atualizada = service_sala.atualizar_sala(id_sala, sala_existente.qt_poltrona, sala_existente.id_sessao)
+
     return jsonify({"message": "Sala atualizada com sucesso.", "sala": sala_atualizada.id_sala}), 200
 
 @sala_bp.route('/sala/<int:id_sala>', methods=['DELETE'])
