@@ -35,4 +35,3 @@ class ServicePoltrona:
     def deletar_poltrona(self, id_poltrona):
         """Deleta uma poltrona pelo ID"""
         return self.RepositoryPoltrona.delete(id_poltrona)
-

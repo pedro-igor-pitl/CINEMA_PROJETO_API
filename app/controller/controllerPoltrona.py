@@ -12,13 +12,14 @@ service_poltrona = ServicePoltrona(db)
 @poltrona_bp.route('/poltronas', methods=['POST'])
 def criar_poltrona():
     dados = request.get_json()
-    qt_poltrona = dados.get('qt_poltrona')
-    id_sessao = dados.get('id_sessao')
+    posicao = dados.get('posicao')
+    tipo_poltrona = dados.get('tipo_poltrona')
+    id_sala = dados.get('id_sala')
 
-    if qt_poltrona is None or id_sessao is None:
+    if posicao is None or tipo_poltrona is None or id_sala is None:
         abort(400, description="Todos os campos são obrigatórios.")
 
-    nova_poltrona = service_poltrona.criar_poltrona(qt_poltrona, id_sessao)
+    nova_poltrona = service_poltrona.criar_poltrona(posicao, tipo_poltrona, id_sala)
     return jsonify(nova_poltrona.to_dict()), 201
 
 # Rota para obter uma poltrona pelo ID (GET)
@@ -39,18 +40,22 @@ def listar_poltronas():
 @poltrona_bp.route('/poltronas/<int:id_poltrona>', methods=['PUT'])
 def atualizar_poltrona(id_poltrona):
     dados = request.get_json()
-    qt_poltrona = dados.get('qt_poltrona')
-    id_sessao = dados.get('id_sessao')
+    posicao = dados.get('posicao')
+    tipo_poltrona = dados.get('tipo_poltrona')
+    id_sala = dados.get('id_sala')
 
-    poltrona_atualizada = service_poltrona.atualizar_poltrona(id_poltrona, qt_poltrona, id_sessao)
+    poltrona_atualizada = service_poltrona.atualizar_poltrona(id_poltrona, posicao, tipo_poltrona, id_sala)
     if poltrona_atualizada is None:
         abort(404, description="Poltrona não encontrada.")
     return jsonify(poltrona_atualizada.to_dict())
 
-# Rota para deletar uma poltrona (DELETE)
 @poltrona_bp.route('/poltronas/<int:id_poltrona>', methods=['DELETE'])
 def deletar_poltrona(id_poltrona):
     resultado = service_poltrona.deletar_poltrona(id_poltrona)
-    if not resultado:
+    
+    if resultado:
+        # Retorna status 200 com uma mensagem de confirmação
+        return jsonify({"mensagem": "Poltrona deletada com sucesso"}), 200
+    else:
+        # Se não encontrou a poltrona, retorna 404
         abort(404, description="Poltrona não encontrada.")
-    return jsonify({"mensagem": "Poltrona deletada com sucesso"}), 204
