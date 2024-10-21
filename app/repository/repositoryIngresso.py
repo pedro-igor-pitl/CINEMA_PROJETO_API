@@ -31,3 +31,5 @@ class RepositoryIngresso:
         if ingresso:
             self.db.session.delete(ingresso)
             self.db.session.commit()
+            return True  # Retorna True indicando que a poltrona foi excluída
+        return False  # Retorna False se a poltrona não foi encontrada
