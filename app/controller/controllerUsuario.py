@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, abort
 from ..config.database import db
 from ..service.serviceUsuario import ServiceUsuario
+from ..dto.dtoUsuario import UsuarioDTO  # Certifique-se de ter o DTO definido
 
 usuario_bp = Blueprint('usuario_bp', __name__, template_folder='templates')
 
@@ -29,8 +30,9 @@ def criar_usuario():
     senha = dados.get('senha')
     cpf = dados.get('cpf')
 
-    novo_usuario_dto = service_usuario.criar_usuario(nome, email, senha, cpf)
-    return jsonify(novo_usuario_dto.to_dict()), 201
+    novo_usuario_dto = UsuarioDTO(nome=nome, email=email, senha=senha, cpf=cpf)  # Usando o DTO
+    usuario_salvo = service_usuario.criar_usuario(novo_usuario_dto)
+    return jsonify(usuario_salvo.to_dict()), 201
 
 # Rota para atualizar um usuário existente (PUT)
 @usuario_bp.route('/usuarios/<int:id_usuario>', methods=['PUT'])
@@ -41,7 +43,8 @@ def atualizar_usuario(id_usuario):
     senha = dados.get('senha')
     cpf = dados.get('cpf')
 
-    usuario_atualizado_dto = service_usuario.atualizar_usuario(id_usuario, nome, email, senha, cpf)
+    usuario_dto = UsuarioDTO(nome=nome, email=email, senha=senha, cpf=cpf)  # Usando o DTO
+    usuario_atualizado_dto = service_usuario.atualizar_usuario(id_usuario, usuario_dto)
     if usuario_atualizado_dto is None:
         abort(404, description="Usuário não encontrado")
     return jsonify(usuario_atualizado_dto.to_dict())
