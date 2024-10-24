@@ -1,5 +1,6 @@
 from ..model.modelUsuario import Usuario
 from ..repository.repositoryUsuario import RepositoryUsuario
+from ..dto.dtoUsuario import UsuarioDTO
 
 class ServiceUsuario:
     def __init__(self, db):
@@ -8,15 +9,20 @@ class ServiceUsuario:
     def criar_usuario(self, nome, email, senha, cpf):
         """Cria um novo usuário e salva no banco de dados"""
         novo_usuario = Usuario(nome=nome, email=email, senha=senha, cpf=cpf)
-        return self.RepositoryUsuario.save(novo_usuario)
+        usuario_criado = self.RepositoryUsuario.save(novo_usuario)
+        return UsuarioDTO.from_model(usuario_criado)
 
     def obter_usuario_por_id(self, id_usuario):
         """Retorna um usuário pelo ID"""
-        return self.RepositoryUsuario.find_by_id(id_usuario)
+        usuario = self.RepositoryUsuario.find_by_id(id_usuario)
+        if usuario:
+            return UsuarioDTO.from_model(usuario)
+        return None
 
     def listar_usuarios(self):
         """Retorna todos os usuários"""
-        return self.RepositoryUsuario.find_all()
+        usuarios = self.RepositoryUsuario.find_all()
+        return [UsuarioDTO.from_model(usuario) for usuario in usuarios]
 
     def atualizar_usuario(self, id_usuario, nome=None, email=None, senha=None, cpf=None):
         """Atualiza as informações de um usuário existente"""
@@ -26,7 +32,8 @@ class ServiceUsuario:
             usuario.email = email if email is not None else usuario.email
             usuario.senha = senha if senha is not None else usuario.senha
             usuario.cpf = cpf if cpf is not None else usuario.cpf
-            return self.RepositoryUsuario.update(usuario)
+            usuario_atualizado = self.RepositoryUsuario.update(usuario)
+            return UsuarioDTO.from_model(usuario_atualizado)
         return None
 
     def deletar_usuario(self, id_usuario):
