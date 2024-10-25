@@ -1,11 +1,11 @@
 from flask import Blueprint, request, jsonify
 from ..config.database import db
 from ..service.serviceSessao import SessaoService
-from ..model.modelSessao import Sessao  # Certifique-se de que esta importação está correta
+from ..dto.dtoSessao import SessaoDTO  # Importando o DTO
 
 sessao_bp = Blueprint('sessao_bp', __name__, template_folder='templates')
 
-# Instância do repositório de sessão
+# Instância do serviço de sessão
 service_sessao = SessaoService(db)
 
 @sessao_bp.route('/sessao', methods=['POST'])
@@ -19,36 +19,34 @@ def criar_sessao():
     if not (data_sessao and id_sala and preco and linguagem):
         return jsonify({"error": "Todos os campos são obrigatórios."}), 400
 
-    sessao_salva = service_sessao.criar_sessao(data_sessao, id_sala, preco, linguagem)
-    return jsonify({"message": "Sessão criada com sucesso.", "sessao": sessao_salva.id_sessao}), 201
+    # Criando o DTO a partir dos dados recebidos
+    sessao_dto = SessaoDTO(
+        data=data_sessao,
+        id_sala=id_sala,
+        preco=preco,
+        linguagem=linguagem
+    )
+
+    # Criando a sessão usando o DTO
+    sessao_salva = service_sessao.criar_sessao(sessao_dto.data, sessao_dto.id_sala, sessao_dto.preco, sessao_dto.linguagem)
+    
+    return jsonify({"message": "Sessão criada com sucesso.", "sessao": sessao_salva.to_dict()}), 201
 
 @sessao_bp.route('/sessao/<int:id_sessao>', methods=['GET'])
 def obter_sessao(id_sessao):
     sessao = service_sessao.obter_sessao_por_id(id_sessao)
     if sessao:
-        return jsonify({
-            "id_sessao": sessao.id_sessao,
-            "data": sessao.data,
-            "id_sala": sessao.id_sala,
-            "preco": sessao.preco,
-            "linguagem": sessao.linguagem
-        }), 200
+        # Convertendo o objeto para DTO e retornando seus dados
+        sessao_dto = SessaoDTO.from_model(sessao)
+        return jsonify(sessao_dto.to_dict()), 200
     else:
         return jsonify({"error": "Sessão não encontrada."}), 404
 
 @sessao_bp.route('/sessoes', methods=['GET'])
 def listar_sessoes():
     sessoes = service_sessao.listar_sessoes()
-    sessoes_list = [
-        {
-            "id_sessao": sessao.id_sessao,
-            "data": sessao.data,
-            "id_sala": sessao.id_sala,
-            "preco": sessao.preco,
-            "linguagem": sessao.linguagem
-        }
-        for sessao in sessoes
-    ]
+    # Convertendo cada sessão para DTO e devolvendo a lista de dicionários
+    sessoes_list = [SessaoDTO.from_model(sessao).to_dict() for sessao in sessoes]
     return jsonify(sessoes_list), 200
 
 @sessao_bp.route('/sessao/<int:id_sessao>', methods=['PUT'])
@@ -62,7 +60,8 @@ def atualizar_sessao(id_sessao):
         data.get('linguagem')
     )
     if sessao_atualizada:
-        return jsonify({"message": "Sessão atualizada com sucesso.", "sessao": sessao_atualizada.id_sessao}), 200
+        sessao_dto = SessaoDTO.from_model(sessao_atualizada)
+        return jsonify({"message": "Sessão atualizada com sucesso.", "sessao": sessao_dto.to_dict()}), 200
     return jsonify({"error": "Sessão não encontrada."}), 404
 
 @sessao_bp.route('/sessao/<int:id_sessao>', methods=['DELETE'])
