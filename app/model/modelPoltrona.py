@@ -8,10 +8,10 @@ class Poltrona(db.Model):
     tipo_poltrona = db.Column(db.String(50), nullable=False)
     id_sala = db.Column(db.Integer, db.ForeignKey('sala.id_sala'), nullable=False)
 
-    def to_dict(self):
+    '''def to_dict(self):
         return {
             'id_poltrona': self.id_poltrona,
             'posicao': self.posicao,
             'tipo_poltrona': self.tipo_poltrona,
             'id_sala': self.id_sala
-        }
+        }'''

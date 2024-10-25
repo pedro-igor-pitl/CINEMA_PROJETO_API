@@ -9,11 +9,11 @@ class Usuario(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     senha = db.Column(db.String(100), nullable=False)
 
-    def to_dict(self):
+    '''def to_dict(self):
         return {
             'id_usuario': self.id_usuario,
             'cpf': self.cpf,
             'nome': self.nome,
             'email': self.email,
             'senha': self.senha 
-        }
+        }'''

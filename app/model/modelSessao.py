@@ -9,11 +9,11 @@ class Sessao(db.Model):
     preco = db.Column(db.Numeric(10, 2), nullable=False)
     linguagem = db.Column(db.String(50), nullable=False)
 
-    def to_dict(self):
+    '''def to_dict(self):
         return {
             'id_sessao': self.id_sessao,
             'data': self.data,
             'id_sala': self.id_sala,
             'preco': self.preco,
             'linguagem': self.linguagem
-        }
+        }'''

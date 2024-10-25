@@ -7,9 +7,9 @@ class Sala(db.Model):
     qt_poltrona = db.Column(db.Integer, nullable=False)
     id_sessao = db.Column(db.Integer, db.ForeignKey('sessao.id_sessao'), nullable=False)
 
-    def to_dict(self):
+    '''def to_dict(self):
         return {
             'id_sala': self.id_sala,
             'qt_poltrona': self.qt_poltrona,
             'id_sessao': self.id_sessao
-        }
+        }'''

@@ -12,7 +12,7 @@ class Filme(db.Model):
     genero = Column(String(100), nullable=False)
     data_lancamento = Column(String(20))
 
-    def to_dict(self):
+    '''def to_dict(self):
         return {
             'id_filme': self.id_filme,
             'nome_filme': self.nome_filme,
@@ -21,4 +21,4 @@ class Filme(db.Model):
             'duracao': self.duracao,
             'genero': self.genero,
             'data_lancamento': self.data_lancamento,
-        }
+        }'''

@@ -11,7 +11,7 @@ class Ingresso(db.Model):
     qrcode = db.Column(db.String(255), nullable=False)
     data_pedido = db.Column(db.String(20), nullable=False)
 
-    def to_dict(self):
+    '''def to_dict(self):
         return {
             'id_ingresso': self.id_ingresso,
             'id_usuario': self.id_usuario,
@@ -19,4 +19,4 @@ class Ingresso(db.Model):
             'id_poltrona': self.id_poltrona,
             'qrcode': self.qrcode,
             'data_pedido': self.data_pedido,
-        }
+        }'''
