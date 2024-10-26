@@ -1,0 +1,161 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cinema API",
+    "description": "API para gerenciamento de um sistema de cinema",
+    "version": "1.0.0"
+  },
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/usuarios": {
+      "get": {
+        "tags": ["Usuário"],
+        "summary": "Lista todos os usuários",
+        "description": "Retorna uma lista de usuários cadastrados",
+        "responses": {
+          "200": {
+            "description": "Lista de usuários",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usuario"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Usuário"],
+        "summary": "Cria um novo usuário",
+        "description": "Adiciona um novo usuário ao sistema",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações do novo usuário",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso"
+          },
+          "400": {
+            "description": "Erro nos dados enviados"
+          }
+        }
+      }
+    },
+    "/usuarios/{id_usuario}": {
+      "get": {
+        "tags": ["Usuário"],
+        "summary": "Obtém um usuário pelo ID",
+        "description": "Retorna os dados de um usuário específico",
+        "parameters": [
+          {
+            "name": "id_usuario",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados do usuário",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Usuário"],
+        "summary": "Atualiza os dados de um usuário",
+        "description": "Modifica as informações de um usuário existente",
+        "parameters": [
+          {
+            "name": "id_usuario",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados atualizados do usuário",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Usuário"],
+        "summary": "Deleta um usuário",
+        "description": "Remove um usuário do sistema pelo ID",
+        "parameters": [
+          {
+            "name": "id_usuario",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Usuário deletado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Usuario": {
+      "type": "object",
+      "properties": {
+        "id_usuario": {
+          "type": "integer",
+          "description": "ID do usuário"
+        },
+        "cpf": {
+          "type": "string",
+          "description": "CPF do usuário"
+        },
+        "nome": {
+          "type": "string",
+          "description": "Nome do usuário"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email do usuário"
+        },
+        "senha": {
+          "type": "string",
+          "description": "Senha do usuário"
+        }
+      }
+    }
+  }
+}
