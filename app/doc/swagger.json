@@ -129,33 +129,752 @@
           }
         }
       }
+    },
+    "/sessoes": {
+      "get": {
+        "tags": ["Sessão"],
+        "summary": "Lista todas as sessões",
+        "description": "Retorna uma lista de sessões cadastradas",
+        "responses": {
+          "200": {
+            "description": "Lista de sessões",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sessao"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessao": {
+      "post": {
+        "tags": ["Sessão"],
+        "summary": "Cria uma nova sessão",
+        "description": "Adiciona uma nova sessão ao sistema",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações da nova sessão",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sessao"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Sessão criada com sucesso"
+          },
+          "400": {
+            "description": "Erro nos dados enviados"
+          }
+        }
+      }
+    },
+    "/sessao/{id_sessao}": {
+      "get": {
+        "tags": ["Sessão"],
+        "summary": "Obtém uma sessão pelo ID",
+        "description": "Retorna os dados de uma sessão específica",
+        "parameters": [
+          {
+            "name": "id_sessao",
+            "in": "path",
+            "description": "ID da sessão",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados da sessão",
+            "schema": {
+              "$ref": "#/definitions/Sessao"
+            }
+          },
+          "404": {
+            "description": "Sessão não encontrada"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Sessão"],
+        "summary": "Atualiza os dados de uma sessão",
+        "description": "Modifica as informações de uma sessão existente",
+        "parameters": [
+          {
+            "name": "id_sessao",
+            "in": "path",
+            "description": "ID da sessão",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados atualizados da sessão",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sessao"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sessão atualizada com sucesso"
+          },
+          "404": {
+            "description": "Sessão não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Sessão"],
+        "summary": "Deleta uma sessão",
+        "description": "Remove uma sessão do sistema pelo ID",
+        "parameters": [
+          {
+            "name": "id_sessao",
+            "in": "path",
+            "description": "ID da sessão",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sessão deletada com sucesso"
+          },
+          "404": {
+            "description": "Sessão não encontrada"
+          }
+        }
+      }
+    },
+    "/salas": {
+      "get": {
+        "tags": ["Sala"],
+        "summary": "Lista todas as salas",
+        "description": "Retorna uma lista de salas cadastradas",
+        "responses": {
+          "200": {
+            "description": "Lista de salas",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sala"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sala": {
+      "post": {
+        "tags": ["Sala"],
+        "summary": "Cria uma nova sala",
+        "description": "Adiciona uma nova sala ao sistema",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações da nova sala",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sala"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Sala criada com sucesso"
+          },
+          "400": {
+            "description": "Erro nos dados enviados"
+          }
+        }
+      }
+    },
+    "/sala/{id_sala}": {
+      "get": {
+        "tags": ["Sala"],
+        "summary": "Obtém uma sala pelo ID",
+        "description": "Retorna os dados de uma sala específica",
+        "parameters": [
+          {
+            "name": "id_sala",
+            "in": "path",
+            "description": "ID da sala",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados da sala",
+            "schema": {
+              "$ref": "#/definitions/Sala"
+            }
+          },
+          "404": {
+            "description": "Sala não encontrada"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Sala"],
+        "summary": "Atualiza os dados de uma sala",
+        "description": "Modifica as informações de uma sala existente",
+        "parameters": [
+          {
+            "name": "id_sala",
+            "in": "path",
+            "description": "ID da sala",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados atualizados da sala",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sala"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sala atualizada com sucesso"
+          },
+          "404": {
+            "description": "Sala não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Sala"],
+        "summary": "Deleta uma sala",
+        "description": "Remove uma sala do sistema pelo ID",
+        "parameters": [
+          {
+            "name": "id_sala",
+            "in": "path",
+            "description": "ID da sala",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sala deletada com sucesso"
+          },
+          "404": {
+            "description": "Sala não encontrada"
+          }
+        }
+      }
+    },
+    "/poltronas": {
+      "get": {
+        "tags": ["Poltrona"],
+        "summary": "Lista todas as poltronas",
+        "description": "Retorna uma lista de poltronas cadastradas",
+        "responses": {
+          "200": {
+            "description": "Lista de poltronas",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Poltrona"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Poltrona"],
+        "summary": "Cria uma nova poltrona",
+        "description": "Adiciona uma nova poltrona ao sistema",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações da nova poltrona",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Poltrona"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Poltrona criada com sucesso"
+          },
+          "400": {
+            "description": "Erro nos dados enviados"
+          }
+        }
+      }
+    },
+    "/poltronas/{id_poltrona}": {
+      "get": {
+        "tags": ["Poltrona"],
+        "summary": "Obtém uma poltrona pelo ID",
+        "description": "Retorna os dados de uma poltrona específica",
+        "parameters": [
+          {
+            "name": "id_poltrona",
+            "in": "path",
+            "description": "ID da poltrona",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados da poltrona",
+            "schema": {
+              "$ref": "#/definitions/Poltrona"
+            }
+          },
+          "404": {
+            "description": "Poltrona não encontrada"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Poltrona"],
+        "summary": "Atualiza os dados de uma poltrona",
+        "description": "Modifica as informações de uma poltrona existente",
+        "parameters": [
+          {
+            "name": "id_poltrona",
+            "in": "path",
+            "description": "ID da poltrona",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados atualizados da poltrona",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Poltrona"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Poltrona atualizada com sucesso"
+          },
+          "404": {
+            "description": "Poltrona não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Poltrona"],
+        "summary": "Deleta uma poltrona",
+        "description": "Remove uma poltrona do sistema pelo ID",
+        "parameters": [
+          {
+            "name": "id_poltrona",
+            "in": "path",
+            "description": "ID da poltrona",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Poltrona deletada com sucesso"
+          },
+          "404": {
+            "description": "Poltrona não encontrada"
+          }
+        }
+      }
+    },
+    "/ingressos": {
+      "get": {
+        "tags": ["Ingresso"],
+        "summary": "Lista todos os ingressos",
+        "description": "Retorna uma lista de ingressos cadastrados",
+        "responses": {
+          "200": {
+            "description": "Lista de ingressos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Ingresso"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Ingresso"],
+        "summary": "Cria um novo ingresso",
+        "description": "Adiciona um novo ingresso ao sistema",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações do novo ingresso",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ingresso"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Ingresso criado com sucesso"
+          },
+          "400": {
+            "description": "Erro nos dados enviados"
+          }
+        }
+      }
+    },
+    "/ingressos/{id_ingresso}": {
+      "get": {
+        "tags": ["Ingresso"],
+        "summary": "Obtém um ingresso pelo ID",
+        "description": "Retorna os dados de um ingresso específico",
+        "parameters": [
+          {
+            "name": "id_ingresso",
+            "in": "path",
+            "description": "ID do ingresso",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados do ingresso",
+            "schema": {
+              "$ref": "#/definitions/Ingresso"
+            }
+          },
+          "404": {
+            "description": "Ingresso não encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Ingresso"],
+        "summary": "Atualiza os dados de um ingresso",
+        "description": "Modifica as informações de um ingresso existente",
+        "parameters": [
+          {
+            "name": "id_ingresso",
+            "in": "path",
+            "description": "ID do ingresso",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados atualizados do ingresso",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ingresso"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingresso atualizado com sucesso"
+          },
+          "404": {
+            "description": "Ingresso não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Ingresso"],
+        "summary": "Deleta um ingresso",
+        "description": "Remove um ingresso do sistema pelo ID",
+        "parameters": [
+          {
+            "name": "id_ingresso",
+            "in": "path",
+            "description": "ID do ingresso",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Ingresso deletado com sucesso"
+          },
+          "404": {
+            "description": "Ingresso não encontrado"
+          }
+        }
+      }
+    },
+    "/filmes": {
+      "get": {
+        "tags": ["Filme"],
+        "summary": "Lista todos os filmes",
+        "description": "Retorna uma lista de filmes cadastrados",
+        "responses": {
+          "200": {
+            "description": "Lista de filmes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Filme"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Filme"],
+        "summary": "Cria um novo filme",
+        "description": "Adiciona um novo filme ao sistema",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações do novo filme",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Filme"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Filme criado com sucesso"
+          },
+          "400": {
+            "description": "Erro nos dados enviados"
+          }
+        }
+      }
+    },
+    "/filmes/{id_filme}": {
+      "get": {
+        "tags": ["Filme"],
+        "summary": "Obtém um filme pelo ID",
+        "description": "Retorna os dados de um filme específico",
+        "parameters": [
+          {
+            "name": "id_filme",
+            "in": "path",
+            "description": "ID do filme",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados do filme",
+            "schema": {
+              "$ref": "#/definitions/Filme"
+            }
+          },
+          "404": {
+            "description": "Filme não encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Filme"],
+        "summary": "Atualiza os dados de um filme",
+        "description": "Modifica as informações de um filme existente",
+        "parameters": [
+          {
+            "name": "id_filme",
+            "in": "path",
+            "description": "ID do filme",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados atualizados do filme",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Filme"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filme atualizado com sucesso"
+          },
+          "404": {
+            "description": "Filme não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Filme"],
+        "summary": "Deleta um filme",
+        "description": "Remove um filme do sistema pelo ID",
+        "parameters": [
+          {
+            "name": "id_filme",
+            "in": "path",
+            "description": "ID do filme",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Filme deletado com sucesso"
+          },
+          "404": {
+            "description": "Filme não encontrado"
+          }
+        }
+      }
     }
   },
   "definitions": {
     "Usuario": {
       "type": "object",
       "properties": {
-        "id_usuario": {
+        "id": {
           "type": "integer",
-          "description": "ID do usuário"
-        },
-        "cpf": {
-          "type": "string",
-          "description": "CPF do usuário"
+          "format": "int64"
         },
         "nome": {
-          "type": "string",
-          "description": "Nome do usuário"
+          "type": "string"
         },
         "email": {
-          "type": "string",
-          "description": "Email do usuário"
+          "type": "string"
         },
         "senha": {
-          "type": "string",
-          "description": "Senha do usuário"
+          "type": "string"
         }
       }
+    },
+    "Sessao": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filme": {
+          "type": "string"
+        },
+        "horario": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sala_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "Sala": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "capacidade": {
+          "type": "integer"
+        }
+      }
+    },
+    "Poltrona": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "posicao": {
+          "type": "string"
+        },
+        "tipo_poltrona": {
+          "type": "string"
+        },
+        "id_sala": {
+          "type": "integer"
+        }
+      }
+    },
+    "Ingresso": {
+      "type": "object",
+      "properties": {
+        "id_usuario": {
+          "type": "integer"
+        },
+        "id_sala": {
+          "type": "integer"
+        },
+        "id_poltrona": {
+          "type": "integer"
+        },
+        "qrcode": {
+          "type": "string"
+        },
+        "data_pedido": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id_usuario",
+        "id_sala",
+        "id_poltrona",
+        "qrcode",
+        "data_pedido"
+      ]
+    },
+    "Filme": {
+      "type": "object",
+      "properties": {
+        "nome_filme": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        },
+        "caminho_img": {
+          "type": "string"
+        },
+        "duracao": {
+          "type": "string"
+        },
+        "genero": {
+          "type": "string"
+        },
+        "data_lancamento": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "nome_filme",
+        "descricao",
+        "caminho_img",
+        "duracao",
+        "genero",
+        "data_lancamento"
+      ]
     }
   }
 }
