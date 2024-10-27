@@ -24,6 +24,7 @@ class RepositoryFilme:
             existing_filme.duracao = filme.duracao
             existing_filme.genero = filme.genero
             existing_filme.data_lancamento = filme.data_lancamento
+            existing_filme.autor_filme = filme.autor_filme
             self.db.session.commit()
         return existing_filme
 

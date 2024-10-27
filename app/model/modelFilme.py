@@ -11,6 +11,8 @@ class Filme(db.Model):
     duracao = Column(String, nullable=False)
     genero = Column(String(100), nullable=False)
     data_lancamento = Column(String(20))
+    autor_filme = Column(String(100), nullable=True)  # Novo campo adicionado
+
 
     '''def to_dict(self):
         return {

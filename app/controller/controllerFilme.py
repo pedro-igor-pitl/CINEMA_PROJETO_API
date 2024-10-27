@@ -60,7 +60,8 @@ def atualizar_filme(id_filme):
         caminho_img=data.get('caminho_img'),
         duracao=data.get('duracao'),
         genero=data.get('genero'),
-        data_lancamento=data.get('data_lancamento')
+        data_lancamento=data.get('data_lancamento'),
+        autor_filme=data.get('autor_filme')
     )
 
     filme_atualizado_dto = service_filme.atualizar_filme(id_filme, filme_dto)

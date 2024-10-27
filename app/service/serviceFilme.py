@@ -53,6 +53,7 @@ class ServiceFilme:
             filme.duracao = filme_dto.duracao
             filme.genero = filme_dto.genero
             filme.data_lancamento = filme_dto.data_lancamento
+            filme.autor_filme = filme_dto.autor_filme
             # Salva as alterações no repositório
             self.repository_filme.save(filme)
             return FilmeDTO.from_model(filme)  # Retorna o DTO do filme atualizado
