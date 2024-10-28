@@ -11,7 +11,6 @@ class ServiceIngresso:
 
     def criar_ingresso(self, ingresso_dto: IngressoDTO):
         """Cria um novo ingresso com base em um DTO e salva no banco de dados"""
-        # Converte o DTO para o modelo de domínio
         novo_ingresso = Ingresso(
             id_usuario=ingresso_dto.id_usuario,
             id_sala=ingresso_dto.id_sala,
@@ -28,15 +27,16 @@ class ServiceIngresso:
         buffer = BytesIO()
         qr.save(buffer, format="PNG")
         qr_code_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
-        
+
         # Salva o QR Code em Base64 no ingresso
         novo_ingresso.qrcode = qr_code_base64
-        
+
         # Salva o ingresso no repositório
         ingresso_salvo = self.RepositoryIngresso.save(novo_ingresso)
-        
+
         # Retorna o modelo convertido para DTO
         return IngressoDTO.from_model(ingresso_salvo)
+
 
     def obter_ingresso_por_id(self, id_ingresso):
         """Retorna um ingresso pelo ID, como um DTO"""

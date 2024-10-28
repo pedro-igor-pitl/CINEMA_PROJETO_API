@@ -1,4 +1,7 @@
-from flask import Blueprint, request, jsonify, abort
+from flask import Blueprint, request, jsonify, abort, send_file
+from io import BytesIO
+import base64
+from PIL import Image
 from ..config.database import db
 from ..service.serviceIngresso import ServiceIngresso
 from ..dto.dtoIngresso import IngressoDTO
@@ -8,6 +11,37 @@ ingresso_bp = Blueprint('ingresso_bp', __name__, template_folder='templates')
 
 # Instância do serviço de ingresso
 service_ingresso = ServiceIngresso(db)
+
+from flask import abort, send_file
+from io import BytesIO
+import base64
+from PIL import Image
+
+# Rota para obter o QR code em base64 (GET)
+@ingresso_bp.route('/ingressos/<int:id_ingresso>/qrcode', methods=['GET'])
+def obter_qrcode(id_ingresso):
+    ingresso_dto = service_ingresso.obter_ingresso_por_id(id_ingresso)
+    
+    # Verifica se o ingresso foi encontrado e se tem QR code
+    if not ingresso_dto:
+        abort(404, description="Ingresso não encontrado")
+    
+    if not ingresso_dto.qrcode:
+        abort(404, description="QR code não encontrado")
+
+    try:
+        image_data = base64.b64decode(ingresso_dto.qrcode)
+        image = Image.open(BytesIO(image_data))
+    except Exception as e:
+        abort(404, description="QR code não encontrado ou inválido.")
+    
+    # Retorna a imagem como resposta HTTP
+    buffered = BytesIO()
+    image.save(buffered, format="PNG")
+    buffered.seek(0)
+    
+    return send_file(buffered, mimetype="image/png", as_attachment=True, download_name="qrcode.png")
+
 
 # Rota para criar um novo ingresso (POST)
 @ingresso_bp.route('/ingressos', methods=['POST'])
@@ -29,7 +63,16 @@ def criar_ingresso():
     # Cria o ingresso usando o DTO, o qrcode será gerado automaticamente no ServiceIngresso
     novo_ingresso_dto = service_ingresso.criar_ingresso(ingresso_dto)
     
+    # Decodifica o QR code em base64 para exibir
+    if novo_ingresso_dto.qrcode:
+        image_data = base64.b64decode(novo_ingresso_dto.qrcode)
+        image = Image.open(BytesIO(image_data))
+
+        # Exibe a imagem
+        image.show()
+
     return jsonify(novo_ingresso_dto.to_dict()), 201
+
 
 # Rota para obter um ingresso pelo ID (GET)
 @ingresso_bp.route('/ingressos/<int:id_ingresso>', methods=['GET'])

@@ -7,10 +7,13 @@ class RepositoryIngresso:
     def save(self, ingresso):
         self.db.session.add(ingresso)
         self.db.session.commit()
+        # Verifica o QR code que está sendo salvo
         return ingresso
 
     def find_by_id(self, id_ingresso):
-        return self.db.session.query(Ingresso).get(id_ingresso)
+        ingresso = self.db.session.query(Ingresso).get(id_ingresso)
+        return ingresso
+
 
     def find_all(self):
         return self.db.session.query(Ingresso).all()
