@@ -34,10 +34,7 @@
             "name": "body",
             "in": "body",
             "description": "Informações do novo usuário",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UsuarioCriacao"
-            }
+            "required": true
           }
         ],
         "responses": {
@@ -92,10 +89,7 @@
             "name": "body",
             "in": "body",
             "description": "Dados atualizados do usuário",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UsuarioAtualizacao"
-            }
+            "required": true
           }
         ],
         "responses": {
