@@ -36,7 +36,7 @@
             "description": "Informações do novo usuário",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Usuario"
+              "$ref": "#/definitions/UsuarioCriacao"
             }
           }
         ],
@@ -94,7 +94,7 @@
             "description": "Dados atualizados do usuário",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Usuario"
+              "$ref": "#/definitions/UsuarioAtualizacao"
             }
           }
         ],
@@ -134,14 +134,18 @@
       "get": {
         "tags": ["Sessão"],
         "summary": "Lista todas as sessões",
-        "description": "Retorna uma lista de sessões cadastradas",
+        "description": "Retorna uma lista de todas as sessões cadastradas no sistema.",
         "responses": {
           "200": {
             "description": "Lista de sessões",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Sessao"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Sessao"
+                  }
+                }
               }
             }
           }
@@ -152,21 +156,28 @@
       "post": {
         "tags": ["Sessão"],
         "summary": "Cria uma nova sessão",
-        "description": "Adiciona uma nova sessão ao sistema",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Informações da nova sessão",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Sessao"
+        "description": "Adiciona uma nova sessão ao sistema.",
+        "requestBody": {
+          "description": "Informações da nova sessão",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Sessao"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "201": {
-            "description": "Sessão criada com sucesso"
+            "description": "Sessão criada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Sala"
+                }
+              }
+            }
           },
           "400": {
             "description": "Erro nos dados enviados"
@@ -178,21 +189,27 @@
       "get": {
         "tags": ["Sessão"],
         "summary": "Obtém uma sessão pelo ID",
-        "description": "Retorna os dados de uma sessão específica",
+        "description": "Retorna os dados de uma sessão específica pelo seu ID.",
         "parameters": [
           {
             "name": "id_sessao",
             "in": "path",
-            "description": "ID da sessão",
+            "description": "ID da sessão a ser obtida",
             "required": true,
-            "type": "integer"
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Dados da sessão",
-            "schema": {
-              "$ref": "#/definitions/Sessao"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Sessao"
+                }
+              }
             }
           },
           "404": {
@@ -203,25 +220,29 @@
       "put": {
         "tags": ["Sessão"],
         "summary": "Atualiza os dados de uma sessão",
-        "description": "Modifica as informações de uma sessão existente",
+        "description": "Modifica as informações de uma sessão existente.",
         "parameters": [
           {
             "name": "id_sessao",
             "in": "path",
-            "description": "ID da sessão",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Dados atualizados da sessão",
+            "description": "ID da sessão a ser atualizada",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Sessao"
+              "type": "integer"
             }
           }
         ],
+        "requestBody": {
+          "description": "Dados atualizados da sessão",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Sessao"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Sessão atualizada com sucesso"
@@ -234,14 +255,16 @@
       "delete": {
         "tags": ["Sessão"],
         "summary": "Deleta uma sessão",
-        "description": "Remove uma sessão do sistema pelo ID",
+        "description": "Remove uma sessão do sistema pelo seu ID.",
         "parameters": [
           {
             "name": "id_sessao",
             "in": "path",
-            "description": "ID da sessão",
+            "description": "ID da sessão a ser deletada",
             "required": true,
-            "type": "integer"
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -749,59 +772,78 @@
     "Usuario": {
       "type": "object",
       "properties": {
-        "id": {
+        "id_usuario": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "example": 1
+        },
+        "cpf": {
+          "type": "string",
+          "example": "123.456.789-00"
         },
         "nome": {
-          "type": "string"
+          "type": "string",
+          "example": "João Silva"
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "example": "joao.silva@email.com"
         },
         "senha": {
-          "type": "string"
+          "type": "string",
+          "example": "senha"
         }
-      }
+      },
+      "required": ["cpf", "nome", "email", "senha"]
     },
     "Sessao": {
       "type": "object",
       "properties": {
-        "id": {
+        "id_sessao": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "example": 1
         },
-        "filme": {
-          "type": "string"
-        },
-        "horario": {
+        "data": {
           "type": "string",
-          "format": "date-time"
+          "example": "10/10/2024"
         },
-        "sala_id": {
-          "type": "integer"
+        "id_sala": {
+          "type": "integer",
+          "example": 1
+        },
+        "preco": {
+          "type": "number",
+          "format": "decimal",
+          "example": 13.5
+        },
+        "linguagem": {
+          "type": "string",
+          "example": "LEGENDADO"
         }
-      }
+      },
+      "required": ["data", "id_sala", "preco", "linguagem"]
     },
     "Sala": {
       "type": "object",
       "properties": {
-        "id": {
+        "id_sala": {
           "type": "integer",
           "format": "int64"
         },
-        "nome": {
-          "type": "string"
+        "qt_poltrona": {
+          "type": "integer"
         },
-        "capacidade": {
+        "id_sessao": {
           "type": "integer"
         }
-      }
+      },
+      "required": ["id_sala", "qt_poltrona", "id_sessao"]
     },
     "Poltrona": {
       "type": "object",
       "properties": {
-        "id": {
+        "id_poltrona": {
           "type": "integer",
           "format": "int64"
         },
@@ -814,11 +856,16 @@
         "id_sala": {
           "type": "integer"
         }
-      }
+      },
+      "required": ["id_poltrona", "posicao", "tipo_poltrona", "id_sala"]
     },
     "Ingresso": {
       "type": "object",
       "properties": {
+        "id_ingresso": {
+          "type": "integer",
+          "format": "int64"
+        },
         "id_usuario": {
           "type": "integer"
         },
@@ -832,11 +879,11 @@
           "type": "string"
         },
         "data_pedido": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         }
       },
       "required": [
+        "id_ingresso",
         "id_usuario",
         "id_sala",
         "id_poltrona",
@@ -847,6 +894,10 @@
     "Filme": {
       "type": "object",
       "properties": {
+        "id_filme": {
+          "type": "integer",
+          "format": "int64"
+        },
         "nome_filme": {
           "type": "string"
         },
@@ -863,11 +914,11 @@
           "type": "string"
         },
         "data_lancamento": {
-          "type": "string",
-          "format": "date"
+          "type": "string"
         }
       },
       "required": [
+        "id_filme",
         "nome_filme",
         "descricao",
         "caminho_img",
