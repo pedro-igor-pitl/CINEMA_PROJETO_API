@@ -43,6 +43,9 @@
           },
           "400": {
             "description": "Erro nos dados enviados"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -70,6 +73,9 @@
           },
           "404": {
             "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -98,6 +104,9 @@
           },
           "404": {
             "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -120,6 +129,9 @@
           },
           "404": {
             "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -175,6 +187,9 @@
           },
           "400": {
             "description": "Erro nos dados enviados"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -208,6 +223,9 @@
           },
           "404": {
             "description": "Sessão não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -243,6 +261,9 @@
           },
           "404": {
             "description": "Sessão não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -267,6 +288,9 @@
           },
           "404": {
             "description": "Sessão não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -311,6 +335,9 @@
           },
           "400": {
             "description": "Erro nos dados enviados"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -338,6 +365,9 @@
           },
           "404": {
             "description": "Sala não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -369,6 +399,9 @@
           },
           "404": {
             "description": "Sala não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -391,6 +424,9 @@
           },
           "404": {
             "description": "Sala não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -433,6 +469,9 @@
           },
           "400": {
             "description": "Erro nos dados enviados"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -460,6 +499,9 @@
           },
           "404": {
             "description": "Poltrona não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -491,6 +533,9 @@
           },
           "404": {
             "description": "Poltrona não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -513,6 +558,9 @@
           },
           "404": {
             "description": "Poltrona não encontrada"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -555,6 +603,9 @@
           },
           "400": {
             "description": "Erro nos dados enviados"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -582,6 +633,9 @@
           },
           "404": {
             "description": "Ingresso não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -613,6 +667,9 @@
           },
           "404": {
             "description": "Ingresso não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -635,6 +692,9 @@
           },
           "404": {
             "description": "Ingresso não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -677,6 +737,9 @@
           },
           "400": {
             "description": "Erro nos dados enviados"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -704,6 +767,9 @@
           },
           "404": {
             "description": "Filme não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -735,6 +801,9 @@
           },
           "404": {
             "description": "Filme não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       },
@@ -757,6 +826,9 @@
           },
           "404": {
             "description": "Filme não encontrado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
           }
         }
       }
@@ -832,7 +904,7 @@
           "type": "integer"
         }
       },
-      "required": ["id_sala", "qt_poltrona", "id_sessao"]
+      "required": ["qt_poltrona", "id_sessao"]
     },
     "Poltrona": {
       "type": "object",
@@ -851,7 +923,7 @@
           "type": "integer"
         }
       },
-      "required": ["id_poltrona", "posicao", "tipo_poltrona", "id_sala"]
+      "required": ["posicao", "tipo_poltrona", "id_sala"]
     },
     "Ingresso": {
       "type": "object",
@@ -877,7 +949,6 @@
         }
       },
       "required": [
-        "id_ingresso",
         "id_usuario",
         "id_sala",
         "id_poltrona",
@@ -912,7 +983,6 @@
         }
       },
       "required": [
-        "id_filme",
         "nome_filme",
         "descricao",
         "caminho_img",
