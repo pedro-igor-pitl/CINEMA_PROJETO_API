@@ -1,0 +1,16 @@
+import base64
+from io import BytesIO
+from PIL import Image
+
+# Seu código base64
+data = "iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKAQAAAABTUiuoAAACAklEQVR4nO2aQarcMAyGPzWGWTo3mKM4V+uReoPkKHOAQrJ84PB3YSfNey0lU8iMF9IixOJb/CBkS7JNnLTp21kSHHXUUUcddfRK1KqF6p16sGHZ3MPlAhx9Bk2SpBlsYDXSDBrpJEn6jF4jwNFn0GVPoSUclod8a0ero7tNd4mp76TxPQIcPY9KjwBpXrdUe7UAR/9h2z4XBSwArEb60WVY4Ng7v12roxWdzMysBxvoSohsYC0l4SsEOHrGSm59Gj+tJsjoi/v9Wh2t/dYA1HKQTqXfMgsl6V4gwNFTVnNr6n8G0vhhwGoQ1wBxxtLcXyvA0SdQtv63nlalHx5jLt0xSSofjW/X6mgNj5QpMZIyJGWkudPm82g1gdbcSnNXPhqjdJw8zXX85NFqAN2itefWGOvEsMYI8J2wFTQcF8tNBgbEHIw4g1cZLaLLTTbEjzp+L0fWErDhVQIcPWF7bq0Gy622WsQZKz66bFcKcPR/asJqtWSft+IdrwkbQvd+C6BcP+byt9WJeJXRGrrfHVMCpQzEDNM9v0SAo6ds67eg9Fv7LKNY2vdIz60G0ak8m6mboL73q7+iaQYNf3hqORg03QXpcZPXhK2gf7k7BtK4YukRsqXRz6120BqtqeRPh4Ehlh5qv3WxAEefjtbvS+L6F3VY6EoBjjrqqKOOOvoE+gtPk0H5vpwgwgAAAABJRU5ErkJggg=="
+
+# Decodifica o base64
+image_data = base64.b64decode(data)
+image = Image.open(BytesIO(image_data))
+
+# Salva a imagem em um arquivo (opcional)
+image.save("qrcode.png")
+
+# Mostra a imagem
+image.show()

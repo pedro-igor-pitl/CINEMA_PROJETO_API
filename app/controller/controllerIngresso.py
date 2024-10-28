@@ -13,20 +13,22 @@ service_ingresso = ServiceIngresso(db)
 @ingresso_bp.route('/ingressos', methods=['POST'])
 def criar_ingresso():
     data = request.get_json()
-    # Cria o DTO com os dados recebidos
+
+    # Cria o DTO com os dados recebidos, sem incluir o campo qrcode
     ingresso_dto = IngressoDTO(
         id_usuario=data.get('id_usuario'),
         id_sala=data.get('id_sala'),
         id_poltrona=data.get('id_poltrona'),
-        qrcode=data.get('qrcode'),
         data_pedido=data.get('data_pedido')
     )
 
-    if not (ingresso_dto.id_usuario and ingresso_dto.id_sala and ingresso_dto.id_poltrona and ingresso_dto.qrcode and ingresso_dto.data_pedido):
+    # Verifica se todos os campos obrigatórios foram fornecidos
+    if not (ingresso_dto.id_usuario and ingresso_dto.id_sala and ingresso_dto.id_poltrona and ingresso_dto.data_pedido):
         return jsonify({"error": "Todos os campos são obrigatórios."}), 400
 
-    # Cria o ingresso usando o DTO
+    # Cria o ingresso usando o DTO, o qrcode será gerado automaticamente no ServiceIngresso
     novo_ingresso_dto = service_ingresso.criar_ingresso(ingresso_dto)
+    
     return jsonify(novo_ingresso_dto.to_dict()), 201
 
 # Rota para obter um ingresso pelo ID (GET)
@@ -53,7 +55,7 @@ def atualizar_ingresso(id_ingresso):
         id_usuario=data.get('id_usuario'),
         id_sala=data.get('id_sala'),
         id_poltrona=data.get('id_poltrona'),
-        qrcode=data.get('qrcode'),
+        qrcode=data.get('qrcode'),  # Permite atualização do qrcode, se necessário
         data_pedido=data.get('data_pedido')
     )
 
