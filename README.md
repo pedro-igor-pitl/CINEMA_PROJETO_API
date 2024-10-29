@@ -1,25 +1,25 @@
-# 🌟 CINEMA_PROJETO_API
+# CINEMA_PROJETO_API
 
 ## 🎬 Tópicos Especiais em Programação Web - NP2
 
 # 📚 Sumário
-1. 👥 [**Participantes**](#participantes)
-2. 📖 [**Descrição do Projeto**](#descrição-do-projeto)
-3. 🏗️ [**Arquitetura do Projeto**](#arquitetura-do-projeto-modelo-em-camadas)
-4. 🔧 [**CRUD Implementado**](#crud-implementado)
-5. 🛠️ [**Tecnologias Utilizadas**](#tecnologias-utilizadas)
-6. 📁 [**Estrutura de Pastas**](#estrutura-de-pastas)
-7. ⚡ [**Documentação com Swagger**](#documentação-com-swagger)
-8. 📦 [**Como Executar o Projeto**](#como-executar-o-projeto)
+1.  [**Participantes**](#participantes)
+2.  [**Descrição do Projeto**](#descrição-do-projeto)
+3.  [**Arquitetura do Projeto**](#arquitetura-do-projeto-modelo-em-camadas)
+4.  [**CRUD Implementado**](#crud-implementado)
+5.  [**Tecnologias Utilizadas**](#tecnologias-utilizadas)
+6.  [**Estrutura de Pastas**](#estrutura-de-pastas)
+7.  [**Documentação com Swagger**](#documentação-com-swagger)
+8.  [**Como Executar o Projeto**](#como-executar-o-projeto)
 ---
 
 ## Participantes
 
-### ° Pedro Igor Torres Luz 👨‍💻
+### ° Pedro Igor Torres Luz 
 - **LinkedIn**: [Pedro Igor Torres Luz](https://www.linkedin.com/in/pedro-igor-torres-luz)
 - **GitHub**: [pedro-igor-pitl](https://github.com/pedro-igor-pitl)
 
-### ° Pietra Bezerra 👩‍💻
+### ° Pietra Bezerra 
 - **LinkedIn**: [Pietra Bezerra](https://www.linkedin.com/in/pietrabezerra/)
 - **GitHub**: [piet2b](https://github.com/piet2b)
 
@@ -36,7 +36,7 @@
 2. **Controladores (Controllers)**: Definem as rotas da API e são responsáveis por gerenciar as requisições e respostas HTTP.
 3. **Documentação (Doc)**: Documentação da API utilizando Swagger, incluindo especificações e guias de uso.
 4. **Data Transfer Objects (DTO)**: Objetos que ajudam na transferência de dados entre as camadas da aplicação.
-5. **Modelos**: Mapeamento das entidades do banco de dados usando **SQLAlchemy**, representando as tabelas e relações.
+5. **Modelos (Model)**: Mapeamento das entidades do banco de dados usando **SQLAlchemy**, representando as tabelas e relações.
 6. **Repositórios (Repositories)**: Executam operações de CRUD no banco de dados de forma isolada, centralizando o acesso aos dados.
 7. **Serviços (Services)**: Implementam a lógica de negócios e manipulam os dados recebidos dos controladores antes de serem persistidos ou retornados.
 ---
@@ -214,7 +214,7 @@ Clique na seta da pasta "📁 CINEMA_PROJETO_API/"
 - ⚙️ [.gitattributes](#gitattributes) - Configuração de atributos para controle de versão.
 - 🚀 [app.py](#app.py) - Arquivo principal que inicia a aplicação Flask.
 - 📜 [LICENSE](#license) - Licença do projeto.
-- 📘 [README.md](#readme.md) - Documentação do projeto.
+- 📘 [README.md](#readme.md) - Sumário do projeto.
 </details>
 
 ---
@@ -321,6 +321,6 @@ Após garantir que todos os pré-requisitos estão instalados:
 6. **Configurar a conexão com o banco de dados: No arquivo app.py, configure as seguintes linhas com suas credenciais:**
     ```bash
         # Configuração do banco de dados
-      senha = 'pedroBD'  # Substitua pela sua senha real
-      app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{senha}@localhost:5432/cinema_projeto_api'
+      senha = ''  # Substitua pela sua senha real
+      app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{senha}@localhost:5432/cinema_projeto_api' #Coloque o nome que tiver salvo no seu banco de dados
       app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
