@@ -163,24 +163,21 @@
         "tags": ["Sessão"],
         "summary": "Cria uma nova sessão",
         "description": "Adiciona uma nova sessão ao sistema.",
-        "requestBody": {
-          "description": "Informações da nova sessão",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Sessao"
-              }
-            }
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações da nova sessão",
+            "required": true
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Sessão criada com sucesso",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Sala"
+                  "$ref": "#/definitions/Sessao"
                 }
               }
             }
@@ -242,19 +239,14 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados atualizados da sessão",
+            "required": true
           }
         ],
-        "requestBody": {
-          "description": "Dados atualizados da sessão",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/Sessao"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Sessão atualizada com sucesso"
@@ -845,7 +837,7 @@
         },
         "cpf": {
           "type": "string",
-          "example": "123.456.789-00"
+          "example": "123456789-00"
         },
         "nome": {
           "type": "string",
