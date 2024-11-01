@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Cinema API",
+    "title": "CINEMA_PROJETO_API_SWAGGER",
     "description": "API para gerenciamento de um sistema de cinema",
     "version": "1.0.0"
   },
@@ -30,13 +30,16 @@
         "summary": "Cria um novo usuário",
         "description": "Adiciona um novo usuário ao sistema",
         "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Informações do novo usuário",
-            "required": true
-          }
-        ],
+      {
+        "name": "body",
+        "in": "body",
+        "description": "Informações do novo usuario",
+        "required": true,
+        "schema": {
+          "$ref": "#/definitions/Usuario"
+        }
+      }
+    ],
         "responses": {
           "201": {
             "description": "Usuário criado com sucesso"
@@ -95,7 +98,10 @@
             "name": "body",
             "in": "body",
             "description": "Dados atualizados do usuário",
-            "required": true
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
           }
         ],
         "responses": {
@@ -136,28 +142,28 @@
         }
       }
     },
-    "/sessoes": {
-      "get": {
-        "tags": ["Sessão"],
-        "summary": "Lista todas as sessões",
-        "description": "Retorna uma lista de todas as sessões cadastradas no sistema.",
-        "responses": {
-          "200": {
-            "description": "Lista de sessões",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Sessao"
-                  }
-                }
+"/sessoes": {
+  "get": {
+    "tags": ["Sessão"],
+    "summary": "Lista todas as sessões",
+    "description": "Retorna uma lista de todas as sessões cadastradas no sistema.",
+    "responses": {
+      "200": {
+        "description": "Lista de sessões",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sessao"
               }
             }
           }
         }
       }
-    },
+    }
+  }
+},
     "/sessao": {
       "post": {
         "tags": ["Sessão"],
@@ -557,6 +563,38 @@
         }
       }
     },
+    "/ingressos/{id_ingresso}/qrcode": {
+      "get": {
+      "tags": ["Ingresso Qrcode"],
+        "summary": "Obter QR code do ingresso",
+        "description": "Retorna o QR code associado ao ingresso especificado pelo `id_ingresso`.",
+        "parameters": [
+          {
+            "name": "id_ingresso",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do ingresso para o qual o QR code deve ser retornado."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "QR code retornado com sucesso como imagem PNG.",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ingresso ou QR code não encontrado."
+          }
+        }
+      }
+    },
     "/ingressos": {
       "get": {
         "tags": ["Ingresso"],
@@ -837,7 +875,7 @@
         },
         "cpf": {
           "type": "string",
-          "example": "123456789-00"
+          "example": "12345678900"
         },
         "nome": {
           "type": "string",
@@ -917,6 +955,26 @@
       },
       "required": ["posicao", "tipo_poltrona", "id_sala"]
     },
+    "Ingresso_Qrcode": {
+  "type": "object",
+  "properties": {
+    "id_ingresso": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID do ingresso associado ao QR code."
+    },
+    "id_usuario": {
+      "type": "integer",
+      "description": "ID do usuário que possui o ingresso."
+    },
+    "qrcode": {
+      "type": "string",
+      "description": "Representação em Base64 do QR code.",
+      "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB..."
+    }
+  },
+  "required": ["id_ingresso", "id_usuario", "qrcode"]
+},
     "Ingresso": {
       "type": "object",
       "properties": {

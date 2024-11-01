@@ -12,7 +12,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
     config={
-        'app_name': "Cinema API"  # Nome da aplicação que aparecerá no Swagger
+        'app_name': "CINEMA_PROJETO_API_SWAGGER"  # Nome da aplicação que aparecerá no Swagger
     }
 )
 
