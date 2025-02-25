@@ -16,7 +16,7 @@ def create_app():
     senha = '1234' #PIETRA
     app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{senha}@localhost:5432/cinema_api' #PIETRA
 
-    #senha = 'pedroBD' #PEDRO
+   
     #app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{senha}@localhost:5432/cinema_projeto_api' #PEDRO
     
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
